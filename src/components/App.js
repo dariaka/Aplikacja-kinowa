@@ -1,5 +1,7 @@
 import React from "react";
+import { movies, sessions } from '../db';
 const moment = require('moment');
+
 
 function App() {
     console.log('Moment object with current day and time');
@@ -13,6 +15,10 @@ function App() {
 
     console.log('Moment object converted to string with nice looking format');
     console.log(moment().hour(16).minutes(0).add({ days: 1, hours: 3, minutes: 15 }).format("dddd, MMMM Do YYYY, h:mm:ss a"));
+
+    // Check if importing data from db-file works
+    console.log(movies);
+    console.log(sessions);
 
     return <h1>The cinema app is being built here :)</h1>;
 }
