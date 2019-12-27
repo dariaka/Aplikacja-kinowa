@@ -24,4 +24,4 @@ yarn-error.log*
 
 
 # database
-/src/db.js
+#/src/db.js
