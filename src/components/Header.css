@@ -1,7 +1,8 @@
-div.content {
+div.content-header {
     position: absolute;
-    max-width: 180px;
+    max-width: 110px;
     max-height: 84px;
+    padding: 20px 0 !important;
     left: 80px;
     top: 20px;
 
@@ -13,7 +14,7 @@ div.content {
     text-transform: uppercase;
 }
 
-.header {
+.cinema-header {
     font-size: 2em !important;
     color: #EB7D18 !important;
 }
