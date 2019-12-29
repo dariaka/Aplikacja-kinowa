@@ -3,15 +3,6 @@ import MovieList from "./MovieList";
 const moment = require("moment");
 
 const Repertoire = ({ movies }) => {
-  // ToDo: onDayClicked()
-  //
-  // const moviesForDay;
-  // //ToDo: complete
-  // function onDayClicked(dayOfWeek) {
-  //   //ToDo: add day of week handling
-  //   moviesForDay = movies;
-  // }
-
   return (
     <div className="ui container">
       <div className="ui grid">
@@ -21,12 +12,7 @@ const Repertoire = ({ movies }) => {
               Repertoire
             </div>
             <div className="ui orange text right menu">
-              <a
-                // ToDo: onClick={() => onDayClicked("Monday")}
-                className="active item"
-              >
-                Today
-              </a>
+              <a className="active item">Today</a>
               <a style={{ paddingLeft: "20px" }} className="item">
                 {moment()
                   .add(1, "days")
@@ -63,7 +49,6 @@ const Repertoire = ({ movies }) => {
       </div>
 
       <div>
-        {/* ToDo: change to moviesForDay */}
         <MovieList movies={movies} />
       </div>
     </div>
