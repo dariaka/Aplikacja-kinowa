@@ -52,7 +52,7 @@ function App() {
         <Header />
       </div>
       <div key="02">
-        <Repertoire />
+        <Repertoire movies={movies} sessions={sessions} />
       </div>
     </div>
   );
