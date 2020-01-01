@@ -1,6 +1,3 @@
-const moment = require("moment");
-
-// Movies database
 const movies = [
   {
     _id: "mv01",
