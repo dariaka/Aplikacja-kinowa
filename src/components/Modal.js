@@ -2,22 +2,34 @@ import './Modal.css';
 import React from 'react';
 import Button from './Button';
 
-const confirmReservation = () => {
-    console.log("Confirm reservation")
-};
+class Modal extends React.Component {
+    confirmReservation = () => {
+        console.log('Confirm reservation');
+        this.props.onModalClose();
+    };
 
-const rejectReservation = () => {
-    console.log("Reject reservation")
-};
+    rejectReservation = () => {
+        console.log('Reject reservation');
+        this.props.onModalClose();
+    };
 
-function Movie() {
-    return (
-        <div className="modal">
-            Modal
-            <Button text={'Confirm'} onButtonClick={confirmReservation} />
-            <Button text={'Reject'} onButtonClick={rejectReservation} />
-        </div>
-    );
+    render() {
+        if (!this.props.show) return null;
+
+        return (
+            <div className="modal">
+                Modal
+                <Button
+                    text={'Confirm'}
+                    onButtonClick={this.confirmReservation}
+                />
+                <Button
+                    text={'Reject'}
+                    onButtonClick={this.rejectReservation}
+                />
+            </div>
+        );
+    }
 }
 
-export default Movie;
+export default Modal;

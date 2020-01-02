@@ -17,6 +17,10 @@ class App extends React.Component {
 
     componentDidMount() {}
 
+    showModal = () => {
+        this.setState({showModal: !this.state.showModal});
+    }
+
     render() {
         if (this.state.panel === 'repertoire') {
             return (
@@ -31,7 +35,7 @@ class App extends React.Component {
                 <div className="ui container">
                     <Header />
                     <OrderPanel />
-                    <Modal />
+                    <Modal onModalClose={this.showModal} show={this.state.showModal} />
                 </div>
             );
         }
@@ -41,7 +45,7 @@ class App extends React.Component {
                     <Header />
                     <Repertoire />
                     <OrderPanel />
-                    <Modal />
+                    <Modal onModalClose={this.showModal} show={this.state.showModal} />
                 </div>
             );
         }
