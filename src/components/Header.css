@@ -1,0 +1,14 @@
+.content.four.wide.column {
+    max-width: 170px;
+    margin-top: 20px;
+    font-family: Roboto, sans-serif;
+    letter-spacing: -1.5%;
+    font-weight: bold;
+    line-height: 0.6;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+.ui.sub.orange.header {
+    font-size: 2.5em;
+}
