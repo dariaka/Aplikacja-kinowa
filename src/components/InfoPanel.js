@@ -3,18 +3,21 @@ import React from 'react';
 import MovieInfo from './MovieInfo';
 import Button from './Button';
 
-const makeReservation = () => {
-    console.log("Make reservation");
-}
+class InfoPanel extends React.Component {
+    makeReservation = () => {
+        console.log('Make reservation');
+        this.props.onSubmit();
+    };
 
-function InfoPanel() {
-    return (
-        <div className="wrapper">
-            InfoPanel
-            <MovieInfo />
-            <Button text={'Test content'} onButtonClick={makeReservation} />
-        </div>
-    );
+    render() {
+        return (
+            <div className="wrapper">
+                InfoPanel
+                <MovieInfo />
+                <Button text={'Submit'} onButtonClick={this.makeReservation} />
+            </div>
+        );
+    }
 }
 
 export default InfoPanel;

@@ -34,7 +34,7 @@ class App extends React.Component {
             return (
                 <div className="ui container">
                     <Header />
-                    <OrderPanel />
+                    <OrderPanel onSubmit={this.showModal} />
                     <Modal onModalClose={this.showModal} show={this.state.showModal} />
                 </div>
             );
@@ -44,7 +44,7 @@ class App extends React.Component {
                 <div className="ui container">
                     <Header />
                     <Repertoire />
-                    <OrderPanel />
+                    <OrderPanel onSubmit={this.showModal} />
                     <Modal onModalClose={this.showModal} show={this.state.showModal} />
                 </div>
             );
