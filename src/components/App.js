@@ -41,6 +41,7 @@ class App extends React.Component {
                     <Header />
                     <Repertoire />
                     <OrderPanel />
+                    <Modal />
                 </div>
             );
         }

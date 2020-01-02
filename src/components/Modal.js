@@ -12,7 +12,7 @@ const rejectReservation = () => {
 
 function Movie() {
     return (
-        <div className="wrapper">
+        <div className="modal">
             Modal
             <Button text={'Confirm'} onButtonClick={confirmReservation} />
             <Button text={'Reject'} onButtonClick={rejectReservation} />
