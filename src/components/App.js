@@ -13,7 +13,18 @@ class App extends React.Component {
         showModal: false,
         selectedDay: moment(),
         movies: [],
-        // movies: [{movie: {fetch data from movie database}, sessions: [fetch data from session database]}, {}, ..., {}] ??
+        // movies: [{
+        //         id: "<id>", 
+        //         image: "<url>", 
+        //         title: "<title>", 
+        //         summary: "<sum>", 
+        //         sessions: [{
+        //                             id: "<id>", 
+        //                             time: <momentObj>, 
+        //                             seatsBooked: [{row: <num>, place: <num>}, {}]}, 
+        //                         {}]
+        //     }, 
+        //     {}] ??
         selectedMovie: null,
         selectedSession: null,
     };
