@@ -17,16 +17,18 @@ class Modal extends React.Component {
         if (!this.props.show) return null;
 
         return (
-            <div className="modal">
-                Modal
-                <Button
-                    text={'Confirm'}
-                    onButtonClick={this.confirmReservation}
-                />
-                <Button
-                    text={'Reject'}
-                    onButtonClick={this.rejectReservation}
-                />
+            <div className="shader">
+                <div className="modal">
+                    Modal
+                    <Button
+                        text={'Confirm'}
+                        onButtonClick={this.confirmReservation}
+                    />
+                    <Button
+                        text={'Reject'}
+                        onButtonClick={this.rejectReservation}
+                    />
+                </div>
             </div>
         );
     }
