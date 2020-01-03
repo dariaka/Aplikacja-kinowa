@@ -2,7 +2,7 @@ const moment = require('moment');
 
 const movies = [
   {
-    _id: "mv01",
+    id: "mv01",
     image:
       "https://m.media-amazon.com/images/M/MV5BMDUzODgxOTktODllNi00ZDA5LWI3YjktYTk0MWIwOGZlYmIwXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
     title: "The Specials",
@@ -11,7 +11,7 @@ const movies = [
     sessions: ["ss01", "ss07", "ss13"]
   },
   {
-    _id: "mv02",
+    id: "mv02",
     image:
       "https://m.media-amazon.com/images/M/MV5BYzcyZDNlNDktOWRhYy00ODQ5LTg1ODQtZmFmZTIyMjg2Yjk5XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
     title: "Ford v Ferrari",
@@ -20,7 +20,7 @@ const movies = [
     sessions: ["ss02", "ss08", "ss14"]
   },
   {
-    _id: "mv03",
+    id: "mv03",
     image:
       "https://m.media-amazon.com/images/M/MV5BZDZmN2ZjMDgtZWM5MS00MDYzLWEzOGQtNzAzOGEyMzY0OTU1XkEyXkFqcGdeQXVyMzQxMDgxOTM@._V1_.jpg",
     title: "Awoken",
@@ -29,7 +29,7 @@ const movies = [
     sessions: ["ss03", "ss09", "ss15"]
   },
   {
-    _id: "mv04",
+    id: "mv04",
     image:
       "https://m.media-amazon.com/images/M/MV5BNTY1OTQyM2YtM2ZjOC00OWQwLTkzM2YtZjAyOGZkYjlhNWFhXkEyXkFqcGdeQXVyMTk5MzE1MTY@._V1_.jpg",
     title: "Arctic Dogs",
@@ -38,7 +38,7 @@ const movies = [
     sessions: ["ss04", "ss10", "ss12"]
   },
   {
-    _id: "mv05",
+    id: "mv05",
     image:
       "https://m.media-amazon.com/images/M/MV5BM2RlMjcyMGQtZTU3OC00NGRlLWExMGEtYjU3ZjUyMDc0NWZmXkEyXkFqcGdeQXVyNTI4MzE4MDU@._V1_.jpg",
     title: "The Foreigner",
@@ -47,7 +47,7 @@ const movies = [
     sessions: ["ss05", "ss06", "ss11"]
   },
   {
-    _id: "mv06",
+    id: "mv06",
     image:
       "https://m.media-amazon.com/images/M/MV5BMTcyMTQzMDIwNl5BMl5BanBnXkFtZTgwMTY1NjgzMzI@._V1_.jpg",
     title: "Professor Marston and the Wonder Women",
@@ -56,7 +56,7 @@ const movies = [
     sessions: ["ss16", "ss19", "ss22"]
   },
   {
-    _id: "mv07",
+    id: "mv07",
     image:
       "https://m.media-amazon.com/images/M/MV5BMDljNTQ5ODItZmQwMy00M2ExLTljOTQtZTVjNGE2NTg0NGIxXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_.jpg",
     title: "Star Wars: The Rise of Skywalker",
@@ -65,7 +65,7 @@ const movies = [
     sessions: ["ss17", "ss23", "ss29"]
   },
   {
-    _id: "mv08",
+    id: "mv08",
     image:
       "https://m.media-amazon.com/images/M/MV5BNzQ0Mjk1YjItNWI1Ny00NWE2LWFlYTAtYjViY2YzMTVlOGVmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
     title: "Motherless Brooklyn",
@@ -74,7 +74,7 @@ const movies = [
     sessions: ["ss18", "ss27", "ss33"]
   },
   {
-    _id: "mv09",
+    id: "mv09",
     image:
       "https://m.media-amazon.com/images/M/MV5BNTQ4ZmY0NjgtYzVhNy00NzhiLTk3YTYtNzM1MTdjM2VhZDA3XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
     title: "Last Christmas",
@@ -83,7 +83,7 @@ const movies = [
     sessions: ["ss20", "ss26", "ss34"]
   },
   {
-    _id: "mv10",
+    id: "mv10",
     image:
       "https://m.media-amazon.com/images/M/MV5BOTVjMmFiMDUtOWQ4My00YzhmLWE3MzEtODM1NDFjMWEwZTRkXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
     title: "Jumanji: The Next Level",
@@ -92,7 +92,7 @@ const movies = [
     sessions: ["ss21", "ss24", "ss30"]
   },
   {
-    _id: "mv11",
+    id: "mv11",
     image:
       "https://m.media-amazon.com/images/M/MV5BMjA0YjYyZGMtN2U0Ni00YmY4LWJkZTItYTMyMjY3NGYyMTJkXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_.jpg",
     title: "Frozen II",
@@ -101,7 +101,7 @@ const movies = [
     sessions: ["ss28", "ss31", "ss32"]
   },
   {
-    _id: "mv12",
+    id: "mv12",
     image:
       "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
     title: "The Matrix",

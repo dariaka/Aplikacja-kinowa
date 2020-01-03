@@ -2,11 +2,11 @@ import './Repertoire.css';
 import React from 'react';
 import MoviesList from './MoviesList';
 
-function Repertoire() {
+function Repertoire(props) {
     return (
         <div className="wrapper">
             Repertoire
-            <MoviesList />
+            <MoviesList movies={props.movies} onSessionClick={props.onSessionClick} />
         </div>
     );
 }
