@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 const movies = [
   {
     _id: "mv01",
@@ -111,877 +113,570 @@ const movies = [
 
 const sessions = [
   {
-    _id: "ss01",
-    time: "Tuesday, December 31st 2019, 12:00",
+    id: "ss01",
+    time: moment().hour(12).minutes(0).add({ days: 0, minutes: 0 }),
     seatsBooked: [
-      {
-        row: 3,
-        place: 4
-      },
-      {
-        row: 1,
-        place: 1
-      },
-      {
-        row: 2,
-        place: 10
-      },
-      {
-        row: 2,
-        place: 8
-      },
-      {
-        row: 4,
-        place: 10
-      }
+      {row: 4, place: 1},
+      {row: 5, place: 10},
+      {row: 2, place: 6},
+      {row: 2, place: 8},
+      {row: 4, place: 4},
+      {row: 5, place: 4},
+      {row: 1, place: 2}
     ]
   },
   {
-    _id: "ss02",
-    time: "Tuesday, December 31st 2019, 14:30",
+    id: "ss02",
+    time: moment().hour(12).minutes(0).add({ days: 0, minutes: 150 }),
     seatsBooked: [
-      {
-        row: 1,
-        place: 1
-      },
-      {
-        row: 4,
-        place: 5
-      },
-      {
-        row: 4,
-        place: 9
-      },
-      {
-        row: 3,
-        place: 4
-      },
-      {
-        row: 1,
-        place: 7
-      },
-      {
-        row: 3,
-        place: 10
-      }
+      {row: 4, place: 4}
     ]
   },
   {
-    _id: "ss03",
-    time: "Tuesday, December 31st 2019, 17:00",
+    id: "ss03",
+    time: moment().hour(12).minutes(0).add({ days: 0, minutes: 300 }),
     seatsBooked: [
-      {
-        row: 1,
-        place: 5
-      },
-      {
-        row: 2,
-        place: 4
-      },
-      {
-        row: 2,
-        place: 8
-      },
-      {
-        row: 2,
-        place: 9
-      },
-      {
-        row: 5,
-        place: 6
-      },
-      {
-        row: 1,
-        place: 4
-      }
+      {row: 4, place: 3},
+      {row: 1, place: 9},
+      {row: 4, place: 3},
+      {row: 3, place: 5},
+      {row: 2, place: 3},
+      {row: 3, place: 8},
+      {row: 2, place: 7},
+      {row: 1, place: 1},
+      {row: 5, place: 5},
+      {row: 2, place: 8},
+      {row: 5, place: 4},
+      {row: 2, place: 8},
+      {row: 4, place: 2},
+      {row: 5, place: 2},
+      {row: 4, place: 9}
     ]
   },
   {
-    _id: "ss04",
-    time: "Tuesday, December 31st 2019, 19:30",
+    id: "ss04",
+    time: moment().hour(12).minutes(0).add({ days: 0, minutes: 450 }),
     seatsBooked: [
-      {
-        row: 2,
-        place: 1
-      }
+      {row: 1, place: 7},
+      {row: 4, place: 3},
+      {row: 4, place: 3},
+      {row: 5, place: 9},
+      {row: 5, place: 1},
+      {row: 1, place: 5},
+      {row: 5, place: 5},
+      {row: 4, place: 4},
+      {row: 2, place: 5},
+      {row: 5, place: 8},
+      {row: 2, place: 7},
+      {row: 5, place: 10}
     ]
   },
   {
-    _id: "ss05",
-    time: "Tuesday, December 31st 2019, 22:00",
+    id: "ss05",
+    time: moment().hour(12).minutes(0).add({ days: 0, minutes: 600 }),
     seatsBooked: [
-      {
-        row: 2,
-        place: 6
-      },
-      {
-        row: 2,
-        place: 5
-      },
-      {
-        row: 1,
-        place: 3
-      },
-      {
-        row: 3,
-        place: 2
-      }
+      {row: 4, place: 2},
+      {row: 1, place: 8},
+      {row: 2, place: 1},
+      {row: 3, place: 10},
+      {row: 1, place: 9},
+      {row: 3, place: 3},
+      {row: 4, place: 5},
+      {row: 2, place: 6},
+      {row: 4, place: 3},
+      {row: 4, place: 8},
+      {row: 5, place: 8},
+      {row: 4, place: 1},
+      {row: 4, place: 6},
+      {row: 2, place: 4},
+      {row: 1, place: 1},
+      {row: 1, place: 9},
+      {row: 5, place: 2}
     ]
   },
   {
-    _id: "ss06",
-    time: "Wednesday, January 1st 2020, 12:00",
+    id: "ss06",
+    time: moment().hour(12).minutes(0).add({ days: 1, minutes: 0 }),
     seatsBooked: [
-      {
-        row: 4,
-        place: 7
-      },
-      {
-        row: 1,
-        place: 5
-      }
+      {row: 5, place: 6},
+      {row: 3, place: 9},
+      {row: 2, place: 8},
+      {row: 4, place: 4},
+      {row: 1, place: 3},
+      {row: 3, place: 6}
     ]
   },
   {
-    _id: "ss07",
-    time: "Wednesday, January 1st 2020, 14:30",
+    id: "ss07",
+    time: moment().hour(12).minutes(0).add({ days: 1, minutes: 150 }),
     seatsBooked: [
-      {
-        row: 2,
-        place: 2
-      },
-      {
-        row: 4,
-        place: 10
-      },
-      {
-        row: 4,
-        place: 4
-      },
-      {
-        row: 1,
-        place: 1
-      },
-      {
-        row: 5,
-        place: 3
-      },
-      {
-        row: 5,
-        place: 7
-      }
+      {row: 2, place: 6},
+      {row: 2, place: 1},
+      {row: 3, place: 6},
+      {row: 5, place: 5},
+      {row: 3, place: 6},
+      {row: 4, place: 6},
+      {row: 3, place: 1}
     ]
   },
   {
-    _id: "ss08",
-    time: "Wednesday, January 1st 2020, 17:00",
+    id: "ss08",
+    time: moment().hour(12).minutes(0).add({ days: 1, minutes: 300 }),
     seatsBooked: [
-      {
-        row: 1,
-        place: 8
-      },
-      {
-        row: 5,
-        place: 7
-      },
-      {
-        row: 1,
-        place: 6
-      },
-      {
-        row: 2,
-        place: 9
-      },
-      {
-        row: 4,
-        place: 9
-      },
-      {
-        row: 5,
-        place: 6
-      },
-      {
-        row: 1,
-        place: 3
-      }
+      {row: 1, place: 7},
+      {row: 4, place: 9},
+      {row: 4, place: 2},
+      {row: 3, place: 10},
+      {row: 2, place: 1},
+      {row: 1, place: 2},
+      {row: 5, place: 8},
+      {row: 2, place: 3},
+      {row: 2, place: 2},
+      {row: 4, place: 1},
+      {row: 5, place: 5},
+      {row: 2, place: 1},
+      {row: 5, place: 9}
     ]
   },
   {
-    _id: "ss09",
-    time: "Wednesday, January 1st 2020, 19:30",
+    id: "ss09",
+    time: moment().hour(12).minutes(0).add({ days: 1, minutes: 450 }),
     seatsBooked: [
-      {
-        row: 2,
-        place: 2
-      },
-      {
-        row: 2,
-        place: 6
-      },
-      {
-        row: 3,
-        place: 9
-      }
+      {row: 5, place: 10},
+      {row: 3, place: 5},
+      {row: 4, place: 9},
+      {row: 5, place: 1},
+      {row: 4, place: 4},
+      {row: 2, place: 3},
+      {row: 5, place: 4},
+      {row: 5, place: 1},
+      {row: 5, place: 9},
+      {row: 3, place: 6},
+      {row: 5, place: 10},
+      {row: 5, place: 3},
+      {row: 1, place: 4},
+      {row: 4, place: 3}
     ]
   },
   {
-    _id: "ss10",
-    time: "Wednesday, January 1st 2020, 22:00",
+    id: "ss10",
+    time: moment().hour(12).minutes(0).add({ days: 1, minutes: 600 }),
     seatsBooked: [
-      {
-        row: 5,
-        place: 6
-      },
-      {
-        row: 1,
-        place: 2
-      },
-      {
-        row: 1,
-        place: 9
-      },
-      {
-        row: 3,
-        place: 10
-      },
-      {
-        row: 4,
-        place: 3
-      },
-      {
-        row: 2,
-        place: 3
-      }
+      {row: 5, place: 7}
     ]
   },
   {
-    _id: "ss11",
-    time: "Thursday, January 2nd 2020, 12:00",
+    id: "ss11",
+    time: moment().hour(12).minutes(0).add({ days: 2, minutes: 0 }),
     seatsBooked: [
-      {
-        row: 1,
-        place: 10
-      }
+      {row: 5, place: 7},
+      {row: 4, place: 9},
+      {row: 3, place: 1},
+      {row: 2, place: 6},
+      {row: 4, place: 1},
+      {row: 4, place: 8},
+      {row: 4, place: 5},
+      {row: 5, place: 4}
     ]
   },
   {
-    _id: "ss12",
-    time: "Thursday, January 2nd 2020, 14:30",
+    id: "ss12",
+    time: moment().hour(12).minutes(0).add({ days: 2, minutes: 150 }),
     seatsBooked: [
-      {
-        row: 5,
-        place: 9
-      }
+      {row: 1, place: 4},
+      {row: 3, place: 4},
+      {row: 2, place: 6},
+      {row: 5, place: 4},
+      {row: 1, place: 8},
+      {row: 4, place: 8},
+      {row: 3, place: 8},
+      {row: 2, place: 2},
+      {row: 2, place: 9}
     ]
   },
   {
-    _id: "ss13",
-    time: "Thursday, January 2nd 2020, 17:00",
+    id: "ss13",
+    time: moment().hour(12).minutes(0).add({ days: 2, minutes: 300 }),
     seatsBooked: [
-      {
-        row: 4,
-        place: 7
-      },
-      {
-        row: 5,
-        place: 2
-      },
-      {
-        row: 2,
-        place: 6
-      },
-      {
-        row: 4,
-        place: 4
-      },
-      {
-        row: 5,
-        place: 6
-      },
-      {
-        row: 2,
-        place: 10
-      },
-      {
-        row: 4,
-        place: 10
-      }
+      {row: 3, place: 7}
     ]
   },
   {
-    _id: "ss14",
-    time: "Thursday, January 2nd 2020, 19:30",
+    id: "ss14",
+    time: moment().hour(12).minutes(0).add({ days: 2, minutes: 450 }),
     seatsBooked: [
-      {
-        row: 3,
-        place: 6
-      },
-      {
-        row: 1,
-        place: 6
-      },
-      {
-        row: 5,
-        place: 1
-      }
+      {row: 3, place: 6},
+      {row: 3, place: 10},
+      {row: 1, place: 3},
+      {row: 5, place: 6},
+      {row: 1, place: 5},
+      {row: 3, place: 4},
+      {row: 1, place: 10},
+      {row: 5, place: 6},
+      {row: 4, place: 9},
+      {row: 3, place: 9},
+      {row: 4, place: 5},
+      {row: 4, place: 7},
+      {row: 4, place: 7},
+      {row: 4, place: 9},
+      {row: 1, place: 10},
+      {row: 4, place: 1},
+      {row: 3, place: 6},
+      {row: 1, place: 5}
     ]
   },
   {
-    _id: "ss15",
-    time: "Thursday, January 2nd 2020, 22:00",
+    id: "ss15",
+    time: moment().hour(12).minutes(0).add({ days: 2, minutes: 600 }),
     seatsBooked: [
-      {
-        row: 4,
-        place: 2
-      },
-      {
-        row: 5,
-        place: 8
-      },
-      {
-        row: 4,
-        place: 1
-      },
-      {
-        row: 3,
-        place: 4
-      },
-      {
-        row: 4,
-        place: 3
-      },
-      {
-        row: 2,
-        place: 9
-      },
-      {
-        row: 2,
-        place: 3
-      },
-      {
-        row: 1,
-        place: 6
-      }
+      {row: 4, place: 7},
+      {row: 4, place: 9},
+      {row: 5, place: 9},
+      {row: 1, place: 2},
+      {row: 1, place: 5},
+      {row: 5, place: 5},
+      {row: 2, place: 5},
+      {row: 2, place: 2},
+      {row: 5, place: 6},
+      {row: 4, place: 1},
+      {row: 3, place: 3},
+      {row: 5, place: 2},
+      {row: 2, place: 7},
+      {row: 4, place: 9}
     ]
   },
   {
-    _id: "ss16",
-    time: "Friday, January 3rd 2020, 12:00",
+    id: "ss16",
+    time: moment().hour(12).minutes(0).add({ days: 3, minutes: 0 }),
     seatsBooked: [
-      {
-        row: 4,
-        place: 6
-      }
+      {row: 5, place: 4},
+      {row: 1, place: 9},
+      {row: 2, place: 7},
+      {row: 1, place: 2},
+      {row: 3, place: 6},
+      {row: 5, place: 3},
+      {row: 3, place: 1},
+      {row: 2, place: 7}
     ]
   },
   {
-    _id: "ss17",
-    time: "Friday, January 3rd 2020, 14:30",
+    id: "ss17",
+    time: moment().hour(12).minutes(0).add({ days: 3, minutes: 150 }),
     seatsBooked: [
-      {
-        row: 5,
-        place: 7
-      },
-      {
-        row: 3,
-        place: 6
-      },
-      {
-        row: 1,
-        place: 5
-      },
-      {
-        row: 2,
-        place: 2
-      }
+      {row: 1, place: 8},
+      {row: 4, place: 8},
+      {row: 5, place: 2},
+      {row: 4, place: 4},
+      {row: 5, place: 5},
+      {row: 5, place: 5},
+      {row: 4, place: 2},
+      {row: 1, place: 5},
+      {row: 1, place: 2},
+      {row: 2, place: 1},
+      {row: 1, place: 8},
+      {row: 2, place: 4},
+      {row: 3, place: 2},
+      {row: 2, place: 10},
+      {row: 2, place: 8},
+      {row: 4, place: 1},
+      {row: 1, place: 8},
+      {row: 1, place: 10}
     ]
   },
   {
-    _id: "ss18",
-    time: "Friday, January 3rd 2020, 17:00",
+    id: "ss18",
+    time: moment().hour(12).minutes(0).add({ days: 3, minutes: 300 }),
     seatsBooked: [
-      {
-        row: 4,
-        place: 8
-      },
-      {
-        row: 3,
-        place: 8
-      },
-      {
-        row: 2,
-        place: 1
-      },
-      {
-        row: 1,
-        place: 1
-      },
-      {
-        row: 4,
-        place: 6
-      }
+      {row: 4, place: 9},
+      {row: 1, place: 5},
+      {row: 1, place: 10},
+      {row: 4, place: 6},
+      {row: 2, place: 1},
+      {row: 2, place: 9},
+      {row: 5, place: 4},
+      {row: 1, place: 3},
+      {row: 2, place: 6},
+      {row: 3, place: 5},
+      {row: 4, place: 9},
+      {row: 3, place: 10}
     ]
   },
   {
-    _id: "ss19",
-    time: "Friday, January 3rd 2020, 19:30",
+    id: "ss19",
+    time: moment().hour(12).minutes(0).add({ days: 3, minutes: 450 }),
     seatsBooked: [
-      {
-        row: 4,
-        place: 8
-      }
+      {row: 3, place: 6},
+      {row: 1, place: 5},
+      {row: 3, place: 4},
+      {row: 2, place: 8},
+      {row: 5, place: 4},
+      {row: 2, place: 5},
+      {row: 4, place: 8},
+      {row: 3, place: 6},
+      {row: 2, place: 7},
+      {row: 2, place: 3}
     ]
   },
   {
-    _id: "ss20",
-    time: "Friday, January 3rd 2020, 22:00",
+    id: "ss20",
+    time: moment().hour(12).minutes(0).add({ days: 3, minutes: 600 }),
     seatsBooked: [
-      {
-        row: 5,
-        place: 8
-      },
-      {
-        row: 2,
-        place: 3
-      },
-      {
-        row: 2,
-        place: 3
-      },
-      {
-        row: 3,
-        place: 2
-      },
-      {
-        row: 1,
-        place: 2
-      },
-      {
-        row: 2,
-        place: 7
-      },
-      {
-        row: 1,
-        place: 2
-      },
-      {
-        row: 2,
-        place: 2
-      }
+      {row: 2, place: 7},
+      {row: 3, place: 2},
+      {row: 2, place: 6},
+      {row: 3, place: 3},
+      {row: 4, place: 3},
+      {row: 3, place: 8},
+      {row: 4, place: 7},
+      {row: 4, place: 9},
+      {row: 1, place: 5},
+      {row: 5, place: 9},
+      {row: 2, place: 1}
     ]
   },
   {
-    _id: "ss21",
-    time: "Saturday, January 4th 2020, 12:00",
+    id: "ss21",
+    time: moment().hour(12).minutes(0).add({ days: 4, minutes: 0 }),
     seatsBooked: [
-      {
-        row: 2,
-        place: 9
-      },
-      {
-        row: 5,
-        place: 8
-      },
-      {
-        row: 4,
-        place: 9
-      },
-      {
-        row: 1,
-        place: 10
-      }
+      {row: 4, place: 7},
+      {row: 5, place: 4},
+      {row: 5, place: 4},
+      {row: 2, place: 6},
+      {row: 1, place: 2},
+      {row: 2, place: 1},
+      {row: 1, place: 3},
+      {row: 1, place: 7},
+      {row: 3, place: 9},
+      {row: 1, place: 8},
+      {row: 2, place: 9},
+      {row: 3, place: 8},
+      {row: 2, place: 6},
+      {row: 2, place: 10},
+      {row: 3, place: 4},
+      {row: 4, place: 7},
+      {row: 1, place: 1},
+      {row: 3, place: 6}
     ]
   },
   {
-    _id: "ss22",
-    time: "Saturday, January 4th 2020, 14:30",
+    id: "ss22",
+    time: moment().hour(12).minutes(0).add({ days: 4, minutes: 150 }),
     seatsBooked: [
-      {
-        row: 3,
-        place: 1
-      },
-      {
-        row: 5,
-        place: 1
-      },
-      {
-        row: 1,
-        place: 10
-      },
-      {
-        row: 5,
-        place: 5
-      },
-      {
-        row: 4,
-        place: 4
-      },
-      {
-        row: 2,
-        place: 8
-      },
-      {
-        row: 5,
-        place: 2
-      },
-      {
-        row: 2,
-        place: 9
-      }
+      {row: 4, place: 9},
+      {row: 1, place: 4},
+      {row: 1, place: 4},
+      {row: 4, place: 7},
+      {row: 5, place: 7},
+      {row: 2, place: 9},
+      {row: 5, place: 8},
+      {row: 5, place: 1}
     ]
   },
   {
-    _id: "ss23",
-    time: "Saturday, January 4th 2020, 17:00",
+    id: "ss23",
+    time: moment().hour(12).minutes(0).add({ days: 4, minutes: 300 }),
     seatsBooked: [
-      {
-        row: 1,
-        place: 3
-      },
-      {
-        row: 5,
-        place: 7
-      },
-      {
-        row: 5,
-        place: 1
-      },
-      {
-        row: 3,
-        place: 7
-      },
-      {
-        row: 1,
-        place: 3
-      },
-      {
-        row: 4,
-        place: 2
-      }
+      {row: 3, place: 9},
+      {row: 1, place: 8},
+      {row: 2, place: 5},
+      {row: 3, place: 2},
+      {row: 2, place: 7},
+      {row: 2, place: 6},
+      {row: 4, place: 7},
+      {row: 2, place: 1},
+      {row: 5, place: 5},
+      {row: 2, place: 4}
     ]
   },
   {
-    _id: "ss24",
-    time: "Saturday, January 4th 2020, 19:30",
+    id: "ss24",
+    time: moment().hour(12).minutes(0).add({ days: 4, minutes: 450 }),
     seatsBooked: [
-      {
-        row: 3,
-        place: 8
-      },
-      {
-        row: 5,
-        place: 2
-      },
-      {
-        row: 2,
-        place: 10
-      },
-      {
-        row: 4,
-        place: 9
-      }
+      {row: 3, place: 9},
+      {row: 5, place: 1},
+      {row: 4, place: 5},
+      {row: 4, place: 6},
+      {row: 4, place: 8},
+      {row: 5, place: 5},
+      {row: 4, place: 9},
+      {row: 5, place: 2},
+      {row: 1, place: 4},
+      {row: 1, place: 10}
     ]
   },
   {
-    _id: "ss25",
-    time: "Saturday, January 4th 2020, 22:00",
+    id: "ss25",
+    time: moment().hour(12).minutes(0).add({ days: 4, minutes: 600 }),
     seatsBooked: [
-      {
-        row: 5,
-        place: 3
-      },
-      {
-        row: 2,
-        place: 10
-      },
-      {
-        row: 5,
-        place: 7
-      },
-      {
-        row: 3,
-        place: 6
-      },
-      {
-        row: 5,
-        place: 7
-      },
-      {
-        row: 5,
-        place: 10
-      },
-      {
-        row: 3,
-        place: 4
-      },
-      {
-        row: 5,
-        place: 3
-      }
+      {row: 1, place: 8}
     ]
   },
   {
-    _id: "ss26",
-    time: "Sunday, January 5th 2020, 12:00",
+    id: "ss26",
+    time: moment().hour(12).minutes(0).add({ days: 5, minutes: 0 }),
     seatsBooked: [
-      {
-        row: 1,
-        place: 7
-      },
-      {
-        row: 1,
-        place: 9
-      },
-      {
-        row: 4,
-        place: 3
-      },
-      {
-        row: 4,
-        place: 4
-      },
-      {
-        row: 2,
-        place: 10
-      },
-      {
-        row: 2,
-        place: 7
-      },
-      {
-        row: 3,
-        place: 3
-      }
+      {row: 3, place: 4},
+      {row: 5, place: 2},
+      {row: 2, place: 6},
+      {row: 5, place: 5},
+      {row: 1, place: 1}
     ]
   },
   {
-    _id: "ss27",
-    time: "Sunday, January 5th 2020, 14:30",
+    id: "ss27",
+    time: moment().hour(12).minutes(0).add({ days: 5, minutes: 150 }),
     seatsBooked: [
-      {
-        row: 4,
-        place: 8
-      },
-      {
-        row: 4,
-        place: 4
-      },
-      {
-        row: 2,
-        place: 1
-      },
-      {
-        row: 1,
-        place: 9
-      }
+      {row: 3, place: 4},
+      {row: 3, place: 6},
+      {row: 1, place: 8},
+      {row: 2, place: 10},
+      {row: 5, place: 6},
+      {row: 1, place: 7},
+      {row: 5, place: 3},
+      {row: 3, place: 4}
     ]
   },
   {
-    _id: "ss28",
-    time: "Sunday, January 5th 2020, 17:00",
+    id: "ss28",
+    time: moment().hour(12).minutes(0).add({ days: 5, minutes: 300 }),
     seatsBooked: [
-      {
-        row: 5,
-        place: 9
-      },
-      {
-        row: 4,
-        place: 1
-      },
-      {
-        row: 4,
-        place: 6
-      },
-      {
-        row: 4,
-        place: 10
-      }
+      {row: 1, place: 8},
+      {row: 2, place: 1},
+      {row: 4, place: 5},
+      {row: 2, place: 4}
     ]
   },
   {
-    _id: "ss29",
-    time: "Sunday, January 5th 2020, 19:30",
+    id: "ss29",
+    time: moment().hour(12).minutes(0).add({ days: 5, minutes: 450 }),
     seatsBooked: [
-      {
-        row: 5,
-        place: 9
-      },
-      {
-        row: 5,
-        place: 6
-      },
-      {
-        row: 1,
-        place: 3
-      },
-      {
-        row: 3,
-        place: 7
-      },
-      {
-        row: 3,
-        place: 8
-      },
-      {
-        row: 1,
-        place: 10
-      },
-      {
-        row: 5,
-        place: 7
-      }
+      {row: 5, place: 8},
+      {row: 1, place: 5},
+      {row: 3, place: 10},
+      {row: 3, place: 4},
+      {row: 4, place: 10},
+      {row: 2, place: 8},
+      {row: 1, place: 7},
+      {row: 5, place: 1},
+      {row: 1, place: 3},
+      {row: 5, place: 10},
+      {row: 5, place: 8},
+      {row: 1, place: 10},
+      {row: 3, place: 5},
+      {row: 1, place: 6},
+      {row: 3, place: 1},
+      {row: 4, place: 8},
+      {row: 4, place: 6},
+      {row: 2, place: 1}
     ]
   },
   {
-    _id: "ss30",
-    time: "Sunday, January 5th 2020, 22:00",
+    id: "ss30",
+    time: moment().hour(12).minutes(0).add({ days: 5, minutes: 600 }),
     seatsBooked: [
-      {
-        row: 5,
-        place: 8
-      },
-      {
-        row: 5,
-        place: 8
-      }
+      {row: 4, place: 2},
+      {row: 5, place: 1},
+      {row: 1, place: 1},
+      {row: 5, place: 2},
+      {row: 3, place: 7}
     ]
   },
   {
-    _id: "ss31",
-    time: "Monday, January 6th 2020, 12:00",
+    id: "ss31",
+    time: moment().hour(12).minutes(0).add({ days: 6, minutes: 0 }),
     seatsBooked: [
-      {
-        row: 4,
-        place: 6
-      }
+      {row: 3, place: 2},
+      {row: 2, place: 7},
+      {row: 3, place: 1},
+      {row: 1, place: 5},
+      {row: 1, place: 5},
+      {row: 5, place: 1},
+      {row: 3, place: 8},
+      {row: 2, place: 3}
     ]
   },
   {
-    _id: "ss32",
-    time: "Monday, January 6th 2020, 14:30",
+    id: "ss32",
+    time: moment().hour(12).minutes(0).add({ days: 6, minutes: 150 }),
     seatsBooked: [
-      {
-        row: 4,
-        place: 9
-      },
-      {
-        row: 4,
-        place: 10
-      },
-      {
-        row: 3,
-        place: 7
-      },
-      {
-        row: 5,
-        place: 7
-      },
-      {
-        row: 4,
-        place: 7
-      },
-      {
-        row: 3,
-        place: 4
-      },
-      {
-        row: 4,
-        place: 6
-      },
-      {
-        row: 4,
-        place: 5
-      }
+      {row: 1, place: 3},
+      {row: 5, place: 5},
+      {row: 1, place: 2},
+      {row: 5, place: 4},
+      {row: 4, place: 4},
+      {row: 2, place: 8},
+      {row: 5, place: 7},
+      {row: 4, place: 7},
+      {row: 2, place: 4},
+      {row: 4, place: 10},
+      {row: 3, place: 7},
+      {row: 3, place: 8},
+      {row: 3, place: 1},
+      {row: 5, place: 6},
+      {row: 5, place: 6},
+      {row: 5, place: 6},
+      {row: 1, place: 2},
+      {row: 3, place: 8},
+      {row: 5, place: 7}
     ]
   },
   {
-    _id: "ss33",
-    time: "Monday, January 6th 2020, 17:00",
+    id: "ss33",
+    time: moment().hour(12).minutes(0).add({ days: 6, minutes: 300 }),
     seatsBooked: [
-      {
-        row: 5,
-        place: 2
-      },
-      {
-        row: 4,
-        place: 1
-      },
-      {
-        row: 4,
-        place: 4
-      },
-      {
-        row: 1,
-        place: 10
-      },
-      {
-        row: 1,
-        place: 9
-      },
-      {
-        row: 2,
-        place: 1
-      }
+      {row: 5, place: 4},
+      {row: 2, place: 3},
+      {row: 2, place: 4},
+      {row: 2, place: 10},
+      {row: 5, place: 1},
+      {row: 4, place: 10},
+      {row: 1, place: 3},
+      {row: 3, place: 9},
+      {row: 2, place: 4},
+      {row: 3, place: 1},
+      {row: 2, place: 3}
     ]
   },
   {
-    _id: "ss34",
-    time: "Monday, January 6th 2020, 19:30",
+    id: "ss34",
+    time: moment().hour(12).minutes(0).add({ days: 6, minutes: 450 }),
     seatsBooked: [
-      {
-        row: 4,
-        place: 7
-      },
-      {
-        row: 4,
-        place: 3
-      },
-      {
-        row: 4,
-        place: 6
-      },
-      {
-        row: 1,
-        place: 8
-      },
-      {
-        row: 5,
-        place: 6
-      }
+      {row: 3, place: 4},
+      {row: 2, place: 2},
+      {row: 2, place: 7},
+      {row: 5, place: 6},
+      {row: 4, place: 10},
+      {row: 4, place: 7},
+      {row: 1, place: 1},
+      {row: 3, place: 4},
+      {row: 3, place: 8},
+      {row: 5, place: 7},
+      {row: 5, place: 9},
+      {row: 2, place: 5},
+      {row: 3, place: 2},
+      {row: 3, place: 4},
+      {row: 5, place: 7}
     ]
   },
   {
-    _id: "ss35",
-    time: "Monday, January 6th 2020, 22:00",
+    id: "ss35",
+    time: moment().hour(12).minutes(0).add({ days: 6, minutes: 600 }),
     seatsBooked: [
-      {
-        row: 2,
-        place: 8
-      },
-      {
-        row: 2,
-        place: 10
-      },
-      {
-        row: 3,
-        place: 1
-      },
-      {
-        row: 3,
-        place: 6
-      },
-      {
-        row: 2,
-        place: 2
-      },
-      {
-        row: 4,
-        place: 8
-      },
-      {
-        row: 1,
-        place: 4
-      }
+      {row: 3, place: 5},
+      {row: 1, place: 5},
+      {row: 3, place: 5},
+      {row: 5, place: 6},
+      {row: 1, place: 3},
+      {row: 4, place: 5},
+      {row: 4, place: 8},
+      {row: 4, place: 8},
+      {row: 4, place: 5},
+      {row: 1, place: 8},
+      {row: 4, place: 4},
+      {row: 3, place: 2},
+      {row: 1, place: 6},
+      {row: 5, place: 4},
+      {row: 4, place: 3}
     ]
   }
 ]
