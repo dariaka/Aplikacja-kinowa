@@ -13,7 +13,7 @@ function AvailableShowtimes(props) {
         const time = moment(session.time, "dddd, MMMM Do YYYY, HH:mm").format('HH:mm');
         return (
                 <Button 
-                key={session._id}
+                key={session.id}
                 text={time} 
                 onButtonClick={goToReservationPanel} />
         );

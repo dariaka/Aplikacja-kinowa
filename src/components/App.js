@@ -24,36 +24,39 @@ class App extends React.Component {
         //                             seatsBooked: [{row: <num>, place: <num>}, {}]}, 
         //                         {}]
         //     }, 
-        //     {}] ??
+        //     {}]
         selectedMovie: null,
         selectedSession: null,
     };
 
     componentDidMount() {
-        // const today = moment();
         this.onDaySelection(this.state.selectedDay);
     }
 
     onDaySelection = (time) => {
-        // time must be a string ("Thursday, January 2nd 2020, 22:00") ??
-        // .format('dddd, MMMM Do YYYY, HH:mm')
-        console.log("in  onDaySelection method")
-        const allSessionsForSelectedDay = sessions.filter(session => {
-            return session.time === time;
-        });
+        const sessionsDB = Array.from(sessions);
+        const moviesDB = Array.from(movies);
 
-        console.log(time); // ok
-        console.log(sessions); // ok
-        console.log(allSessionsForSelectedDay); // !ERR: empty array
-
-        const allMoviesForSelectedDay = movies.filter(movie => {
-            return movie.sessions.some(session => allSessionsForSelectedDay.indexOf(session) > -1);
+        const allSessionsForSelectedDay = sessionsDB.filter(session => {
+            return session.time.format('DD-MM-YYYY') === time.format('DD-MM-YYYY');
+            //TODO: get users time (hour:minutes) and filter off sessions that have passed
         });
-        const renderedMovies = allMoviesForSelectedDay.map(movie => {
+        const allSessionsIds= allSessionsForSelectedDay.map(session => session.id);
+
+        const renderedMovies = moviesDB
+        .filter(movie => {
+            return movie.sessions.some(session => {
+                return allSessionsIds.indexOf(session) > -1});
+        })
+        .map(movie => {
             const matchingSessions = allSessionsForSelectedDay.filter(session => movie.sessions.indexOf(session.id) > -1);
             movie.sessions = matchingSessions;
             return movie;            
         });
+
+        console.log(sessionsDB);
+        console.log(moviesDB); //
+        console.log(renderedMovies); 
 
         this.setState({movies: renderedMovies});
     }
