@@ -1,61 +1,94 @@
-import React from "react";
-import Header from "./Header";
-import Repertoire from "./Repertoire";
-import { movies, sessions } from "../db";
-const moment = require("moment");
+import React from 'react';
+import Header from './Header';
+import Repertoire from './Repertoire';
+import OrderPanel from './OrderPanel';
+import Modal from './Modal';
+import { movies, sessions } from '../db';
 
-function App() {
-  console.log("Moment object with current day and time");
-  console.log(moment());
+const moment = require('moment');
 
-  console.log("Moment object with current day and time set to 16:00");
-  console.log(
-    moment()
-      .hour(16)
-      .minutes(0)
-  );
+class App extends React.Component {
+    state = {
+        panel: 'dev-mode', // TODO: when app is finished change that to  'repertoire'
+        showModal: false,
+        selectedDay: moment(),
+        movies: [],
+        // movies: [{
+        //         id: "<id>", 
+        //         image: "<url>", 
+        //         title: "<title>", 
+        //         summary: "<sum>", 
+        //         sessions: [{
+        //                             id: "<id>", 
+        //                             time: <momentObj>, 
+        //                             seatsBooked: [{row: <num>, place: <num>}, {}]}, 
+        //                         {}]
+        //     }, 
+        //     {}]
+        selectedMovie: null,
+        selectedSession: null,
+    };
 
-  console.log(
-    "Moment object with added 1 day, 3 hours and 15 minutes to the previous time"
-  );
-  console.log(
-    moment()
-      .hour(16)
-      .minutes(0)
-      .add({
-        days: 1,
-        hours: 3,
-        minutes: 15
-      })
-  );
+    componentDidMount() {
+        this.onDaySelection(this.state.selectedDay);
+    }
 
-  console.log("Moment object converted to string with nice looking format");
-  console.log(
-    moment()
-      .hour(16)
-      .minutes(0)
-      .add({
-        days: 1,
-        hours: 3,
-        minutes: 15
-      })
-      .format("dddd, MMMM Do YYYY, h:mm:ss a")
-  );
+    onDaySelection = (time) => {
+        // time is an moment object with the date of the selected day from Repertoire component
+        const allSessionsForSelectedDay = sessions.filter(session => {
+            return session.time.format('DD-MM-YYYY') === time.format('DD-MM-YYYY');
+        });
+        const allSessionsIds = allSessionsForSelectedDay.map(({...session}) => session.id);
 
-  // Check if importing data from db-file works
-  console.log(movies);
-  console.log(sessions);
+        const renderedMovies = movies
+        .filter(movie => movie.sessions.some(session => allSessionsIds.indexOf(session) > -1))
+        .map(({...movie}) => {
+            const matchingSessions = allSessionsForSelectedDay.filter(session => movie.sessions.indexOf(session.id) > -1);
+            movie.sessions = matchingSessions;
+            return movie;            
+        });
 
-  return (
-    <div>
-      <div key="01">
-        <Header />
-      </div>
-      <div key="02">
-        <Repertoire movies={movies} sessions={sessions} />
-      </div>
-    </div>
-  );
+        this.setState({selectedDay: time, movies: renderedMovies});
+    }
+
+    showModal = () => {
+        this.setState({showModal: !this.state.showModal});
+    }
+
+    goToReservationPanel = () => {
+        this.setState({panel: 'order'});
+    }
+
+    render() {
+        if (this.state.panel === 'repertoire') {
+            return (
+                <div className="ui container">
+                    <Header />
+                    <Repertoire  movies={this.state.movies} onSessionClick={this.goToReservationPanel} onDaySelection={this.onDaySelection} />
+                </div>
+            );
+        }
+        if (this.state.panel === 'order') {
+            return (
+                <div className="ui container">
+                    <Header />
+                    <OrderPanel onSubmit={this.showModal} />
+                    <Modal onModalClose={this.showModal} show={this.state.showModal} />
+                </div>
+            );
+        }
+        if (this.state.panel === 'dev-mode') {
+            // TODO: when app is finished remove this "if" statement
+            return (
+                <div className="ui container">
+                    <Header />
+                    <Repertoire  movies={this.state.movies} onSessionClick={this.goToReservationPanel}/>
+                    <OrderPanel onSubmit={this.showModal} />
+                    <Modal onModalClose={this.showModal} show={this.state.showModal} />
+                </div>
+            );
+        }
+    }
 }
 
 export default App;

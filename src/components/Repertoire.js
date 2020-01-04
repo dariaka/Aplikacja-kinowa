@@ -1,9 +1,9 @@
-import React from "react";
-import MovieList from "./MovieList";
-const moment = require("moment");
+import './Repertoire.css';
+import React from 'react';
+import MoviesList from './MoviesList';
 
-const Repertoire = ({ movies }) => {
-  return (
+function Repertoire(props) {
+    return (
     <div className="ui container">
       <div className="ui grid">
         <div className="eight column centered row">
