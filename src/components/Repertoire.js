@@ -2,7 +2,9 @@ import './Repertoire.css';
 import React from 'react';
 import MoviesList from './MoviesList';
 
-function Repertoire(props) {
+const moment = require('moment');
+
+function Repertoire({movies}) {
     return (
     <div className="ui container">
       <div className="ui grid">
@@ -49,7 +51,7 @@ function Repertoire(props) {
       </div>
 
       <div>
-        <MovieList movies={movies} />
+        <MoviesList movies={movies} />
       </div>
     </div>
   );
