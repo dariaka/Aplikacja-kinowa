@@ -1,11 +1,16 @@
 import './Repertoire.css';
 import React from 'react';
 import MoviesList from './MoviesList';
+import { movies, sessions } from "../db";
 
 const moment = require('moment');
 
 class Repertoire extends React.Component {
-    state = {activeDayId: 0};
+    state = {
+      activeDayId: 0,
+      movies: [],
+      sessions: []
+    };
 
     days = [
         moment(),
@@ -16,21 +21,46 @@ class Repertoire extends React.Component {
         moment().add(5, "days"),
         moment().add(6, "days")];
 
-    changeDay = (e) => {
+    updateStates = (activeDayId) => {
+            // get data from sessions database
+        const sessionsForActiveDay = sessions.filter(session => {
+            return session.time.format('DD-MM-YYYY') === this.days[activeDayId].format('DD-MM-YYYY');
+        })
+        // get data from movies database
+        const sessionsForActiveDayIds = sessionsForActiveDay.map(({...session}) => session.id);
+        const moviesForActiveDay = movies.filter(movie =>
+            movie.sessions.some(sessionId => sessionsForActiveDayIds.includes(sessionId)));
+        // change the state
+        this.setState({
+            activeDayId, 
+            movies: moviesForActiveDay, 
+            sessions: sessionsForActiveDay
+        });
+        this.props.onMoviesFetched(moviesForActiveDay);
+    }
+
+    onDayClicked = (e) => {
+        // move class "active" to clicked element
         document.getElementById(`day${this.state.activeDayId}`).classList.remove('active');
         e.currentTarget.classList.toggle('active');
-        this.setState({activeDayId: Number(e.currentTarget.id.replace("day", ""))});
-        this.props.onDaySelect(this.days[Number(e.currentTarget.id.replace("day", ""))]);
+        // get active day id
+        const activeDayId = Number(e.currentTarget.id.replace("day", ""));
+        // get data from database and update the state
+        this.updateStates(activeDayId);   
     }
+
+    componentDidMount() {
+        this.updateStates(this.state.activeDayId);
+      }
 
     renderedList = this.days.map((day, id) => {
         return (
             <a key={id}
-                onClick={this.changeDay}
-                id={"day"+id}
-                className={id===this.state.activeDayId?"active item":"item"}
+                onClick={this.onDayClicked}
+                id={"day" + id}
+                className={id === this.state.activeDayId ? "active item" : "item"}
                 style={{ paddingLeft: "20px" }} >
-                {id===0?day.format("[Today]"):day.format("dddd")}
+                {id === 0 ? day.format("[Today]") : day.format("dddd")}
             </a>
         );
     })
@@ -53,7 +83,8 @@ class Repertoire extends React.Component {
         
               <div>
                 <MoviesList 
-                    movies={this.props.movies} 
+                    movies={this.state.movies} 
+                    sessions={this.state.sessions}
                     onSessionClick={this.props.onSessionClick}
                 />
               </div>

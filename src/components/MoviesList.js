@@ -4,10 +4,12 @@ import Movie from './Movie';
 
 function MoviesList(props) {
     const renderedList = props.movies.map(movie => {
+        const matchingSessions = props.sessions.filter(session => movie.sessions.includes(session.id));
         return (
             <Movie
                 key={movie.id}
                 movie={movie}
+                sessions={matchingSessions}
                 onSessionClick={props.onSessionClick}
             />
         );

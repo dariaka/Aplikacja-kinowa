@@ -7,7 +7,7 @@ function OrderPanel(props) {
     return (
         <div className="wrapper">
             OrderPanel
-            <InfoPanel onSubmit={props.onSubmit} />
+            <InfoPanel onSubmit={props.onOrderSubmit} />
             <PlacesSelectionPanel />
         </div>
     );

@@ -3,12 +3,12 @@ import React from 'react';
 import MovieInfo from './MovieInfo';
 import AvailableShowtimes from './AvailableShowtimes';
 
-function Movie({movie, onSessionClick}) {
+function Movie(props) {
     return (
         <div className="wrapper">
             Movie
-            <MovieInfo title={movie.title} summary={movie.summary} image={movie.image} />
-            <AvailableShowtimes sessions={movie.sessions} onSessionClick={onSessionClick} />
+            <MovieInfo title={props.movie.title} summary={props.movie.summary} image={props.movie.image} />
+            <AvailableShowtimes sessions={props.sessions} onSessionClick={props.onSessionClick} />
         </div>
     );
 }

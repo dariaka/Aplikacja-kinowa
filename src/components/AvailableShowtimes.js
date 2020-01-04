@@ -10,11 +10,10 @@ const goToReservationPanel = () => {
 
 function AvailableShowtimes(props) {
     const renderedList = props.sessions.map(session => {
-        const time = moment(session.time, "dddd, MMMM Do YYYY, HH:mm").format('HH:mm');
         return (
                 <Button 
                 key={session.id}
-                text={time} 
+                text={session.time.format('HH:mm')} 
                 onButtonClick={goToReservationPanel} />
         );
     })

@@ -3,7 +3,6 @@ import Header from './Header';
 import Repertoire from './Repertoire';
 import OrderPanel from './OrderPanel';
 import Modal from './Modal';
-import { movies, sessions } from '../db';
 
 const moment = require('moment');
 
@@ -13,50 +12,24 @@ class App extends React.Component {
         showModal: false,
         selectedDay: moment(),
         movies: [],
-        // movies: [{
-        //         id: "<id>", 
-        //         image: "<url>", 
-        //         title: "<title>", 
-        //         summary: "<sum>", 
-        //         sessions: [{
-        //                             id: "<id>", 
-        //                             time: <momentObj>, 
-        //                             seatsBooked: [{row: <num>, place: <num>}, {}]}, 
-        //                         {}]
-        //     }, 
-        //     {}]
         selectedMovie: null,
         selectedSession: null,
     };
 
-    componentDidMount() {
-        this.onDaySelection(this.state.selectedDay);
-    }
+    onMoviesFetched = fetchedMovies => {
+        this.setState({ movies: fetchedMovies });
+    };
 
-    onDaySelection = (time) => {
-        // time is an moment object with the date of the selected day from Repertoire component
-        const allSessionsForSelectedDay = sessions.filter(session => {
-            return session.time.format('DD-MM-YYYY') === time.format('DD-MM-YYYY');
-        });
-        const allSessionsIds = allSessionsForSelectedDay.map(({...session}) => session.id);
-
-        const renderedMovies = movies
-        .filter(movie => movie.sessions.some(session => allSessionsIds.indexOf(session) > -1))
-        .map(({...movie}) => {
-            const matchingSessions = allSessionsForSelectedDay.filter(session => movie.sessions.indexOf(session.id) > -1);
-            movie.sessions = matchingSessions;
-            return movie;            
-        });
-
-        this.setState({selectedDay: time, movies: renderedMovies});
-    }
-
-    showModal = () => {
+    onOrderSubmit = () => {
         this.setState({showModal: !this.state.showModal});
     }
 
-    goToReservationPanel = () => {
-        this.setState({panel: 'order'});
+    onSessionClick = (movie, session) => {
+        this.setState({
+            panel: 'order',
+            selectedMovie: movie,
+            selectedSession: session
+        });
     }
 
     render() {
@@ -65,9 +38,8 @@ class App extends React.Component {
                 <div className="ui container">
                     <Header />
                     <Repertoire  
-                        movies={this.state.movies} 
-                        onSessionClick={this.goToReservationPanel} 
-                        onDaySelect={this.onDaySelection} 
+                        onSessionClick={this.onSessionClick} 
+                        onMoviesFetched={this.onMoviesFetched}
                     />
                 </div>
             );
@@ -76,8 +48,8 @@ class App extends React.Component {
             return (
                 <div className="ui container">
                     <Header />
-                    <OrderPanel onSubmit={this.showModal} />
-                    <Modal onModalClose={this.showModal} show={this.state.showModal} />
+                    <OrderPanel onOrderSubmit={this.onOrderSubmit} />
+                    <Modal onModalClose={this.onOrderSubmit} show={this.state.showModal} />
                 </div>
             );
         }
@@ -87,12 +59,11 @@ class App extends React.Component {
                 <div className="ui container">
                     <Header />
                     <Repertoire  
-                        movies={this.state.movies} 
-                        onSessionClick={this.goToReservationPanel} 
-                        onDaySelect={this.onDaySelection} 
+                        onSessionClick={this.onSessionClick} 
+                        onMoviesFetched={this.onMoviesFetched}
                     />
-                    <OrderPanel onSubmit={this.showModal} />
-                    <Modal onModalClose={this.showModal} show={this.state.showModal} />
+                    <OrderPanel onOrderSubmit={this.onOrderSubmit} />
+                    <Modal onModalClose={this.onOrderSubmit} show={this.state.showModal} />
                 </div>
             );
         }
