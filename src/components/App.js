@@ -34,29 +34,19 @@ class App extends React.Component {
     }
 
     onDaySelection = (time) => {
-        const sessionsDB = Array.from(sessions);
-        const moviesDB = Array.from(movies);
-
-        const allSessionsForSelectedDay = sessionsDB.filter(session => {
+        const allSessionsForSelectedDay = sessions.filter(session => {
             return session.time.format('DD-MM-YYYY') === time.format('DD-MM-YYYY');
             //TODO: get users time (hour:minutes) and filter off sessions that have passed
         });
-        const allSessionsIds= allSessionsForSelectedDay.map(session => session.id);
+        const allSessionsIds = allSessionsForSelectedDay.map(({...session}) => session.id);
 
-        const renderedMovies = moviesDB
-        .filter(movie => {
-            return movie.sessions.some(session => {
-                return allSessionsIds.indexOf(session) > -1});
-        })
-        .map(movie => {
+        const renderedMovies = movies
+        .filter(movie => movie.sessions.some(session => allSessionsIds.indexOf(session) > -1))
+        .map(({...movie}) => {
             const matchingSessions = allSessionsForSelectedDay.filter(session => movie.sessions.indexOf(session.id) > -1);
             movie.sessions = matchingSessions;
             return movie;            
         });
-
-        console.log(sessionsDB);
-        console.log(moviesDB); //
-        console.log(renderedMovies); 
 
         this.setState({movies: renderedMovies});
     }
