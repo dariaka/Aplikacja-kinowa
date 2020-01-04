@@ -20,7 +20,7 @@ class Repertoire extends React.Component {
         document.getElementById(`day${this.state.activeDayId}`).classList.remove('active');
         e.currentTarget.classList.toggle('active');
         this.setState({activeDayId: Number(e.currentTarget.id.replace("day", ""))});
-        this.props.onDaySelect(this.days[this.state.activeDayId]);
+        this.props.onDaySelect(this.days[Number(e.currentTarget.id.replace("day", ""))]);
     }
 
     renderedList = this.days.map((day, id) => {
