@@ -4,7 +4,27 @@ import MoviesList from './MoviesList';
 
 const moment = require('moment');
 
-function Repertoire({movies}) {
+function Repertoire({movies, onSessionClick, onDaySelect}) {
+    const days = [
+        moment(),
+        moment().add(1, "days"),
+        moment().add(2, "days"),
+        moment().add(3, "days"),
+        moment().add(4, "days"),
+        moment().add(5, "days"),
+        moment().add(6, "days")];
+
+    const renderedList = days.map((day, id) => {
+        return (
+            <a key={id}
+                onClick={() => onDaySelect(day)}
+                className="item"
+                style={{ paddingLeft: "20px" }} >
+                {id===0?day.format("[Today]"):day.format("dddd")}
+            </a>
+        );
+    })
+    
     return (
     <div className="ui container">
       <div className="ui grid">
@@ -14,44 +34,14 @@ function Repertoire({movies}) {
               Repertoire
             </div>
             <div className="ui orange text right menu">
-              <a className="active item">Today</a>
-              <a style={{ paddingLeft: "20px" }} className="item">
-                {moment()
-                  .add(1, "days")
-                  .format("dddd")}
-              </a>
-              <a style={{ paddingLeft: "20px" }} className="item">
-                {moment()
-                  .add(2, "days")
-                  .format("dddd")}
-              </a>
-              <a style={{ paddingLeft: "20px" }} className="item">
-                {moment()
-                  .add(3, "days")
-                  .format("dddd")}
-              </a>
-              <a style={{ paddingLeft: "20px" }} className="item">
-                {moment()
-                  .add(4, "days")
-                  .format("dddd")}
-              </a>
-              <a style={{ paddingLeft: "20px" }} className="item">
-                {moment()
-                  .add(5, "days")
-                  .format("dddd")}
-              </a>
-              <a style={{ paddingLeft: "20px" }} className="item">
-                {moment()
-                  .add(6, "days")
-                  .format("dddd")}
-              </a>
+              {renderedList}
             </div>
           </div>
         </div>
       </div>
 
       <div>
-        <MoviesList movies={movies} />
+        <MoviesList movies={movies} onSessionClick={onSessionClick}/>
       </div>
     </div>
   );

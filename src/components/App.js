@@ -64,7 +64,11 @@ class App extends React.Component {
             return (
                 <div className="ui container">
                     <Header />
-                    <Repertoire  movies={this.state.movies} onSessionClick={this.goToReservationPanel} onDaySelection={this.onDaySelection} />
+                    <Repertoire  
+                        movies={this.state.movies} 
+                        onSessionClick={this.goToReservationPanel} 
+                        onDaySelect={this.onDaySelection} 
+                    />
                 </div>
             );
         }
@@ -82,7 +86,11 @@ class App extends React.Component {
             return (
                 <div className="ui container">
                     <Header />
-                    <Repertoire  movies={this.state.movies} onSessionClick={this.goToReservationPanel}/>
+                    <Repertoire  
+                        movies={this.state.movies} 
+                        onSessionClick={this.goToReservationPanel} 
+                        onDaySelect={this.onDaySelection} 
+                    />
                     <OrderPanel onSubmit={this.showModal} />
                     <Modal onModalClose={this.showModal} show={this.state.showModal} />
                 </div>
