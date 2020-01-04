@@ -1,14 +1,24 @@
-.content.four.wide.column {
-    max-width: 170px;
-    margin-top: 20px;
-    font-family: Roboto, sans-serif;
-    letter-spacing: -1.5%;
+div.content-header {
+    position: absolute;
+    max-width: 110px;
+    max-height: 84px;
+    padding: 20px 0 !important;
+    top: 20px;
+
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
-    line-height: 0.6;
-    text-transform: uppercase;
+
     text-align: right;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
 }
 
-.ui.sub.orange.header {
-    font-size: 2.5em;
+.cinema-header {
+    font-size: 2em !important;
+    color: #EB7D18 !important;
+}
+
+.app-header {
+    font-size: 1.25em !important;
+    color: #000000;
 }
