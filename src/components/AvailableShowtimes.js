@@ -4,25 +4,29 @@ import Button from './Button';
 
 const moment = require('moment');
 
-const goToReservationPanel = () => {
-    console.log("Go to reservation panel");
-}
+class AvailableShowtimes extends React.Component {
 
-function AvailableShowtimes(props) {
-    const renderedList = props.sessions.map(session => {
+    goToReservationPanel = (movie, session) => {
+        this.props.onSessionClick(movie, session);
+    }
+
+    renderedList = this.props.sessions.map(session => {
         return (
-                <Button 
+            <Button 
                 key={session.id}
                 text={session.time.format('HH:mm')} 
-                onButtonClick={goToReservationPanel} />
+                onButtonClick={() => this.goToReservationPanel(this.props.movie, session)} 
+            />
         );
     })
 
-    return (
-        <div className="wrapper">
-            {renderedList}
-        </div>
-    );
+    render() {
+        return (
+            <div className="wrapper">
+                {this.renderedList}
+            </div>
+        );
+    }
 }
 
 export default AvailableShowtimes;

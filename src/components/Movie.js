@@ -7,8 +7,16 @@ function Movie(props) {
     return (
         <div className="wrapper">
             Movie
-            <MovieInfo title={props.movie.title} summary={props.movie.summary} image={props.movie.image} />
-            <AvailableShowtimes sessions={props.sessions} onSessionClick={props.onSessionClick} />
+            <MovieInfo 
+                title={props.movie.title} 
+                summary={props.movie.summary} 
+                image={props.movie.image} 
+            />
+            <AvailableShowtimes 
+                movie={props.movie} 
+                sessions={props.sessions} 
+                onSessionClick={props.onSessionClick} 
+            />
         </div>
     );
 }
