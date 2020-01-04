@@ -1,10 +1,9 @@
 const fs = require('fs');
-const moment = require('moment');
 
 const settings = {
     days: 7,
-    sessionsPerDay: 5,
-    interval: 150, //minutes before next movie starts
+    sessionsPerDay: 12,
+    interval: 45, //minutes before next movie starts
     rows: 5,
     places: 10,
 };
@@ -14,7 +13,6 @@ function timeListMaker() {
     for (let i = 0; i < settings.days; i++) {
         for (let j = 0; j < settings.sessionsPerDay; j++) {
             const time = `moment().hour(12).minutes(0).add({ days: ${i}, minutes: ${j * settings.interval} })`;
-            // .format('dddd, MMMM Do YYYY, HH:mm');
             timeList.push(time);
         }
     }
@@ -49,8 +47,6 @@ function sessionListMaker() {
 
 const times = timeListMaker();
 const sessions = sessionListMaker();
-// console.log(sessions);
-// console.log(sessions[1].seatsBooked);
 
 const data = 'const sessions = ' + JSON.stringify(sessions, null, 2);
 
