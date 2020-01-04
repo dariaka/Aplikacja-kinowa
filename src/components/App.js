@@ -9,7 +9,7 @@ const moment = require('moment');
 
 class App extends React.Component {
     state = {
-        panel: 'dev-mode', // when app is finished change that to  'repertoire'
+        panel: 'dev-mode', // TODO: when app is finished change that to  'repertoire'
         showModal: false,
         selectedDay: moment(),
         movies: [],
@@ -34,9 +34,9 @@ class App extends React.Component {
     }
 
     onDaySelection = (time) => {
+        // time is an moment object with the date of the selected day from Repertoire component
         const allSessionsForSelectedDay = sessions.filter(session => {
             return session.time.format('DD-MM-YYYY') === time.format('DD-MM-YYYY');
-            //TODO: get users time (hour:minutes) and filter off sessions that have passed
         });
         const allSessionsIds = allSessionsForSelectedDay.map(({...session}) => session.id);
 
@@ -48,7 +48,7 @@ class App extends React.Component {
             return movie;            
         });
 
-        this.setState({movies: renderedMovies});
+        this.setState({selectedDay: time, movies: renderedMovies});
     }
 
     showModal = () => {
@@ -64,7 +64,7 @@ class App extends React.Component {
             return (
                 <div className="ui container">
                     <Header />
-                    <Repertoire  movies={this.state.movies} onSessionClick={this.goToReservationPanel}/>
+                    <Repertoire  movies={this.state.movies} onSessionClick={this.goToReservationPanel} onDaySelection={this.onDaySelection} />
                 </div>
             );
         }
@@ -78,7 +78,7 @@ class App extends React.Component {
             );
         }
         if (this.state.panel === 'dev-mode') {
-            // when app is finished remove this "if" statement
+            // TODO: when app is finished remove this "if" statement
             return (
                 <div className="ui container">
                     <Header />
