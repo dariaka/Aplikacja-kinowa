@@ -2,9 +2,11 @@ import './AvailableShowtimes.css';
 import React from 'react';
 import Button from './Button';
 
-const moment = require('moment');
-
 class AvailableShowtimes extends React.Component {
+
+    ifActive = (time) => {
+        return !time.fromNow().includes('ago');
+    }
 
     goToReservationPanel = (movie, session) => {
         this.props.onSessionClick(movie, session);
@@ -15,6 +17,7 @@ class AvailableShowtimes extends React.Component {
             <Button 
                 key={session.id}
                 text={session.time.format('HH:mm')} 
+                active={this.ifActive(session.time)}
                 onButtonClick={() => this.goToReservationPanel(this.props.movie, session)} 
             />
         );

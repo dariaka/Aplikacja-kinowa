@@ -14,7 +14,7 @@ class InfoPanel extends React.Component {
             <div className="wrapper">
                 InfoPanel
                 <MovieInfo />
-                <Button text={'Submit'} onButtonClick={this.makeReservation} />
+                <Button text={'Submit'} active={true} onButtonClick={this.makeReservation} />
             </div>
         );
     }
