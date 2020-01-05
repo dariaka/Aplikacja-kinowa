@@ -1,10 +1,9 @@
 const fs = require('fs');
-const moment = require('moment');
 
 const settings = {
     days: 7,
-    sessionsPerDay: 5,
-    interval: 150, //minutes before next movie starts
+    sessionsPerDay: 12,
+    interval: 45, //minutes before next movie starts
     rows: 5,
     places: 10,
 };
@@ -13,11 +12,7 @@ function timeListMaker() {
     const timeList = [];
     for (let i = 0; i < settings.days; i++) {
         for (let j = 0; j < settings.sessionsPerDay; j++) {
-            const time = moment()
-                .hour(12)
-                .minutes(0)
-                .add({ days: i, minutes: j * settings.interval })
-                .format('dddd, MMMM Do YYYY, HH:mm');
+            const time = `moment().hour(12).minutes(0).add({ days: ${i}, minutes: ${j * settings.interval} })`;
             timeList.push(time);
         }
     }
@@ -25,7 +20,7 @@ function timeListMaker() {
 }
 
 function randomSeats() {
-    const howManySeats = Math.floor(Math.random() * 8) + 1; // min 1, max 8 seats
+    const howManySeats = Math.floor(Math.random() * 20) + 1; // min 1, max 20 seats
     const seats = [];
     for (let i = 0; i < howManySeats; i++) {
         const row = Math.floor(Math.random() * settings.rows) + 1;
@@ -52,8 +47,6 @@ function sessionListMaker() {
 
 const times = timeListMaker();
 const sessions = sessionListMaker();
-// console.log(sessions);
-// console.log(sessions[1].seatsBooked);
 
 const data = 'const sessions = ' + JSON.stringify(sessions, null, 2);
 

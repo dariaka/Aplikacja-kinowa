@@ -1,0 +1,24 @@
+div.content-header {
+    position: absolute;
+    max-width: 110px;
+    max-height: 84px;
+    padding: 20px 0 !important;
+    top: 20px;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+
+    text-align: right;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+}
+
+.cinema-header {
+    font-size: 2em !important;
+    color: #EB7D18 !important;
+}
+
+.app-header {
+    font-size: 1.25em !important;
+    color: #000000;
+}
