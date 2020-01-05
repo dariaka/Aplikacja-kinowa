@@ -8,15 +8,19 @@ const moment = require('moment');
 
 class App extends React.Component {
     state = {
-        panel: 'dev-mode', // TODO: when app is finished change that to  'repertoire'
+        panel: 'repertoire', // TODO: when app is finished change that to  'repertoire'
         showModal: false,
         selectedDay: moment(),
         selectedMovie: null,
         selectedSession: null,
+        selectedSeats: []
     };
 
-    onOrderSubmit = () => {
-        this.setState({showModal: !this.state.showModal});
+    onOrderSubmit = seats => {
+        this.setState({
+            selectedSeats: seats,
+            showModal: !this.state.showModal
+        });
     }
 
     onSessionClick = (movie, session) => {
@@ -33,8 +37,7 @@ class App extends React.Component {
                 <div className="ui container">
                     <Header />
                     <Repertoire  
-                        onSessionClick={this.onSessionClick} 
-                        onMoviesFetched={this.onMoviesFetched}
+                        onSessionClick={this.onSessionClick}
                     />
                 </div>
             );
@@ -43,8 +46,19 @@ class App extends React.Component {
             return (
                 <div className="ui container">
                     <Header />
-                    <OrderPanel onOrderSubmit={this.onOrderSubmit} />
-                    <Modal onModalClose={this.onOrderSubmit} show={this.state.showModal} />
+                    <OrderPanel 
+                        movie={this.state.selectedMovie}
+                        session={this.state.selectedSession}
+                        onOrderSubmit={this.onOrderSubmit} 
+                    />
+                    <Modal 
+                        show={this.state.showModal}
+                        movie={this.state.selectedMovie}
+                        session={this.state.selectedSession}
+                        seats={this.state.selectedSeats}
+                        onConfirm={this.onModalConfirm}
+                        onReject={this.onModalReject}
+                    />
                 </div>
             );
         }
@@ -55,10 +69,16 @@ class App extends React.Component {
                     <Header />
                     <Repertoire  
                         onSessionClick={this.onSessionClick} 
-                        onMoviesFetched={this.onMoviesFetched}
                     />
-                    <OrderPanel onOrderSubmit={this.onOrderSubmit} />
-                    <Modal onModalClose={this.onOrderSubmit} show={this.state.showModal} />
+                    <OrderPanel 
+                        movie={this.state.selectedMovie}
+                        session={this.state.selectedSession}
+                        onOrderSubmit={this.onOrderSubmit} 
+                    />
+                    <Modal 
+                        onModalClose={this.onOrderSubmit} 
+                        show={this.state.showModal} 
+                    />
                 </div>
             );
         }
