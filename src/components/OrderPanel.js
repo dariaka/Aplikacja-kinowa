@@ -40,7 +40,7 @@ function OrderPanel(props) {
             </div>
           </div>
           <div>
-            <PlacesSelectionPanel />
+            <PlacesSelectionPanel selectedSession={props.selectedSession} />
           </div>
         </div>
       </div>

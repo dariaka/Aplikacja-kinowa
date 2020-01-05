@@ -4,8 +4,8 @@ import PlacesGrid from "./PlacesGrid";
 import { settings } from "../db";
 
 class PlacesSelectionPanel extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       seat: [],
       seatAvailable: [],
@@ -57,6 +57,7 @@ class PlacesSelectionPanel extends React.Component {
             seat={this.state.seat}
             available={this.state.seatAvailable}
             reserved={this.state.seatReserved}
+            selectedSession={this.props.selectedSession}
             onClickData={this.onClickData.bind(this)}
           />
         </div>

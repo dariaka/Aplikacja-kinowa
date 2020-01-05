@@ -3,19 +3,25 @@ import React from "react";
 import Place from "./Place";
 import { settings } from "../db";
 
-//  {row: 2, place: 8},
-
 const switchPlaceReservation = seat => {
   console.log("Switch place reservation");
 };
 
 class PlacesGrid extends React.Component {
+  constructor(props) {
+    super(props);
+    if (this.props.selectedSession !== undefined) {
+      console.log(
+        "selected session is: " +
+          JSON.stringify(this.props.selectedSession.seatsBooked)
+      );
+    }
+  }
+
   onClickSeat(seat) {
     this.props.onClickData(seat);
   }
-  // dostaje w propsach informację o ilości rzędów, ilości siedzeń w rzędzie, lokalizacji zajętych miejsc
-  //Zajęte miejsce oznaczamy przez obiekt z kluczem rząd i miejsce.
-  //  do każdego siedzenia przypisujemy props z numerem rzędu i miejsca oraz flagę zajęte- true / false, jeżeli miesjce znajduje się na liście zajętych
+
   render() {
     return (
       <div className="container">
@@ -26,6 +32,7 @@ class PlacesGrid extends React.Component {
                 {this.props.seat.map(seat => (
                   <td
                     className={
+                      //todo complete checking selectedSession and all cinema's hall places
                       this.props.reserved.indexOf(seat) > -1
                         ? "reserved"
                         : "available"
@@ -39,32 +46,6 @@ class PlacesGrid extends React.Component {
               </tr>
             </tbody>
           </table>
-
-          {/* <div className="doubling ten column centered row">
-                    <div className="column">
-                        {this.props.seat.map(seat => (
-                            <div
-                                className={
-                                    this.props.reserved.indexOf(seat) > -1
-                                        ? "reserved"
-                                        : "available"
-                                }
-                                key={seat}
-                                onClick={e => this.onClickSeat(seat)}
-                            >
-                                <Place num={"r:" + seat.row + " s:" + seat.place} />
-                            </div>
-                        ))}
-                    </div>
-                </div> */}
-
-          {/* <div className="ten column centered row">{this.props.seat.map(row) => 
-                    <div className="column">
-                        <Place num={"01"} onButtonClick={switchPlaceReservation} />
-                    </div>
-                }
-                  
-                </div> */}
         </div>
       </div>
     );
