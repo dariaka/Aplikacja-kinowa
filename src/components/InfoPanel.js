@@ -17,7 +17,7 @@ function InfoPanel(props) {
                 </p>
                 <Button 
                    text={'Submit'} 
-                   active={true} 
+                   active={props.reservedSeats.length ? true : false} 
                    onButtonClick={() => props.onOrderSubmit(props.reservedSeats)} 
                 />
             </div>

@@ -8,13 +8,21 @@ const moment = require('moment');
 
 class App extends React.Component {
     state = {
-        panel: 'repertoire', // TODO: when app is finished change that to  'repertoire'
+        panel: 'repertoire',
         showModal: false,
         selectedDay: moment(),
         selectedMovie: null,
         selectedSession: null,
         selectedSeats: []
     };
+
+    onSessionClick = (movie, session) => {
+        this.setState({
+            panel: 'order',
+            selectedMovie: movie,
+            selectedSession: session
+        });
+    }
 
     onOrderSubmit = seats => {
         this.setState({
@@ -23,11 +31,26 @@ class App extends React.Component {
         });
     }
 
-    onSessionClick = (movie, session) => {
+    onModalExit = () => {
         this.setState({
-            panel: 'order',
-            selectedMovie: movie,
-            selectedSession: session
+            showModal: !this.state.showModal
+        });
+    }
+
+    onModalReject = () => {
+        this.setState({
+            panel: 'repertoire',
+            showModal: !this.state.showModal,
+            selectedSeats: [],
+        });
+    }
+
+    onModalConfirm = () => {
+        // TODO: save info somewhere
+        this.setState({
+            panel: 'repertoire',
+            showModal: !this.state.showModal,
+            selectedSeats: [],
         });
     }
 
@@ -56,8 +79,9 @@ class App extends React.Component {
                         movie={this.state.selectedMovie}
                         session={this.state.selectedSession}
                         seats={this.state.selectedSeats}
-                        onConfirm={this.onModalConfirm}
+                        onExit={this.onModalExit}
                         onReject={this.onModalReject}
+                        onConfirm={this.onModalConfirm}
                     />
                 </div>
             );
@@ -76,8 +100,13 @@ class App extends React.Component {
                         onOrderSubmit={this.onOrderSubmit} 
                     />
                     <Modal 
-                        onModalClose={this.onOrderSubmit} 
-                        show={this.state.showModal} 
+                        show={this.state.showModal}
+                        movie={this.state.selectedMovie}
+                        session={this.state.selectedSession}
+                        seats={this.state.selectedSeats}
+                        onExit={this.onModalExit}
+                        onReject={this.onModalReject}
+                        onConfirm={this.onModalConfirm}
                     />
                 </div>
             );
