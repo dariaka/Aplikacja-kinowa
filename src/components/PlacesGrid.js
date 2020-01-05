@@ -3,35 +3,25 @@ import React from 'react';
 import Place from './Place';
 
 class PlacesGrid extends React.Component {
-    constructor(props) {
-        super(props);
-        if (this.props.session !== undefined) {
-            console.log(
-                'selected session is: ' +
-                    JSON.stringify(this.props.session.seatsBooked)
-            );
-        }
-    }
-
-    onClickSeat = seat => {
-        this.props.onClickData(seat);
-    };
-
     renderedSeats = seats => 
         seats.map(seat => {
+            const ifReserved = () => {
+                return (this.props.session.seatsBooked.some(seatBooked => {
+                    return seatBooked.row === seat.row && seatBooked.place === seat.place}))
+            }
             return (
                 <td
-                    className={
-                        //todo complete checking selectedSession and all cinema's hall places
-                        this.props.reserved.indexOf(seat) > -1 ? 'reserved' : 'available'
-                    }
-                    key={seat}
-                    onClick={() => this.onClickSeat(seat)}
-                >
-                    <Place num={'r:' + seat.row + ' s:' + seat.place} />
+                    key={'r' + seat.row + ' p' + seat.place}>
+                        <Place 
+                            seat={seat}
+                            state={ifReserved() ? 'reserved' : 'available'}
+                            onPlaceSelect={this.props.onPlaceSelect}
+                        />
                 </td>
             );
         });
+
+//this.props.session.seatsBooked.some(seatBooked => {return seatBooked.row === seat.row && seatBooked.place === seat.place})
 
     render() {
         return (
@@ -39,7 +29,7 @@ class PlacesGrid extends React.Component {
                 <div className="grid">
                     <table>
                         <tbody>
-                            <tr>{this.renderedSeats(this.props.seat)}</tr>
+                            <tr>{this.renderedSeats(this.props.seats)}</tr>
                         </tbody>
                     </table>
                 </div>
