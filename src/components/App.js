@@ -1,10 +1,10 @@
-import React from 'react';
-import Header from './Header';
-import Repertoire from './Repertoire';
-import OrderPanel from './OrderPanel';
-import Modal from './Modal';
+import React from "react";
+import Header from "./Header";
+import Repertoire from "./Repertoire";
+import OrderPanel from "./OrderPanel";
+import Modal from "./Modal";
 
-const moment = require('moment');
+const moment = require("moment");
 
 class App extends React.Component {
     state = {
@@ -85,32 +85,7 @@ class App extends React.Component {
                     />
                 </div>
             );
-        }
-        if (this.state.panel === 'dev-mode') {
-            // TODO: when app is finished remove this "if" statement
-            return (
-                <div className="ui container">
-                    <Header />
-                    <Repertoire  
-                        onSessionClick={this.onSessionClick} 
-                    />
-                    <OrderPanel 
-                        movie={this.state.selectedMovie}
-                        session={this.state.selectedSession}
-                        onOrderSubmit={this.onOrderSubmit} 
-                    />
-                    <Modal 
-                        show={this.state.showModal}
-                        movie={this.state.selectedMovie}
-                        session={this.state.selectedSession}
-                        seats={this.state.selectedSeats}
-                        onExit={this.onModalExit}
-                        onReject={this.onModalReject}
-                        onConfirm={this.onModalConfirm}
-                    />
-                </div>
-            );
-        }
+        }     
     }
 }
 

@@ -1,25 +1,51 @@
-import "./PlacesGrid.css";
-import React from "react";
-import Place from "./Place";
-
-const switchPlaceReservation = () => {
-  console.log("Switch place reservation");
-};
+import './PlacesGrid.css';
+import React from 'react';
+import Place from './Place';
 
 class PlacesGrid extends React.Component {
-  render() {
-    return (
-      <div className="ui container">
-        <div className="ui centered grid">
-          <div className="ten column centered row">
-            <div className="column">
-              <Place num={"01"} onButtonClick={switchPlaceReservation} />
+    constructor(props) {
+        super(props);
+        if (this.props.session !== undefined) {
+            console.log(
+                'selected session is: ' +
+                    JSON.stringify(this.props.session.seatsBooked)
+            );
+        }
+    }
+
+    onClickSeat = seat => {
+        this.props.onClickData(seat);
+    };
+
+    renderedSeats = seats => 
+        seats.map(seat => {
+            return (
+                <td
+                    className={
+                        //todo complete checking selectedSession and all cinema's hall places
+                        this.props.reserved.indexOf(seat) > -1 ? 'reserved' : 'available'
+                    }
+                    key={seat}
+                    onClick={() => this.onClickSeat(seat)}
+                >
+                    <Place num={'r:' + seat.row + ' s:' + seat.place} />
+                </td>
+            );
+        });
+
+    render() {
+        return (
+            <div className="container">
+                <div className="grid">
+                    <table>
+                        <tbody>
+                            <tr>{this.renderedSeats(this.props.seat)}</tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default PlacesGrid;

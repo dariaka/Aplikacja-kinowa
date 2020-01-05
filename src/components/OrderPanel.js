@@ -5,7 +5,7 @@ import PlacesSelectionPanel from "./PlacesSelectionPanel";
 
 class OrderPanel extends React.Component {
     state = {
-        reservedSeats:[{row: 1, place: 1},{row: 1, place: 2},   {row: 2, place: 1}]
+        reservedSeats:[]
     }
 
     render() {
@@ -16,8 +16,8 @@ class OrderPanel extends React.Component {
                   Booking
                 </div>
               </div>
-              <div className="ui grid">
                 <div className="six wide column">
+              <div className="ui grid">
                   <div>
                     <InfoPanel 
                         movie={this.props.movie}
@@ -51,7 +51,8 @@ class OrderPanel extends React.Component {
                   </div>
                   <div>
                     <PlacesSelectionPanel 
-                        unavailableSeats={                        this.props.session.seatsBooked}
+                        session={this.props.session} 
+                        unavailableSeats={this.props.session.seatsBooked}
                         onPlaceSelect={this.onPlaceSelect}
                     />
                   </div>
