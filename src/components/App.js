@@ -1,26 +1,108 @@
 import React from "react";
-import { movies, sessions } from '../db';
-const moment = require('moment');
+import Header from "./Header";
+import Repertoire from "./Repertoire";
+import OrderPanel from "./OrderPanel";
+import Modal from "./Modal";
 
+const moment = require("moment");
 
-function App() {
-    console.log('Moment object with current day and time');
-    console.log(moment());
+class App extends React.Component {
+    state = {
+        panel: 'repertoire',
+        showModal: false,
+        selectedDay: moment(),
+        selectedMovie: null,
+        selectedSession: null,
+        selectedSeats: []
+    };
 
-    console.log('Moment object with current day and time set to 16:00');
-    console.log(moment().hour(16).minutes(0));
+    onSessionClick = (movie, session) => {
+        this.setState({
+            panel: 'order',
+            selectedMovie: movie,
+            selectedSession: session
+        });
+    }
 
-    console.log('Moment object with added 1 day, 3 hours and 15 minutes to the previous time');
-    console.log(moment().hour(16).minutes(0).add({ days: 1, hours: 3, minutes: 15 }));
+    onOrderSubmit = seats => {
+        this.setState({
+            selectedSeats: seats,
+            showModal: !this.state.showModal
+        });
+    }
 
-    console.log('Moment object converted to string with nice looking format');
-    console.log(moment().hour(16).minutes(0).add({ days: 1, hours: 3, minutes: 15 }).format("dddd, MMMM Do YYYY, h:mm:ss a"));
+    onModalExit = () => {
+        this.setState({
+            showModal: !this.state.showModal
+        });
+    }
 
-    // Check if importing data from db-file works
-    console.log(movies);
-    console.log(sessions);
+    onModalReject = () => {
+        this.setState({
+            panel: 'repertoire',
+            showModal: !this.state.showModal,
+            selectedSeats: [],
+        });
+    }
 
-    return <h1>The cinema app is being built here :)</h1>;
+    onModalConfirm = () => {
+        // TODO: save info somewhere?
+        this.setState({
+            panel: 'repertoire',
+            showModal: !this.state.showModal,
+            selectedSeats: [],
+        });
+    }
+
+    onPlaceSelect = seat => {
+        let newList = this.props.seats;
+        if (this.state.selectedSeats.some(reservedSeat => {
+            return reservedSeat.row === seat.row && reservedSeat.place === seat.place})) {
+                newList = this.state.selectedSeats.filter(reservedSeat => {
+                    return !(reservedSeat.row === seat.row && reservedSeat.place === seat.place)});
+        } else {
+            newList = this.state.selectedSeats.concat(seat);
+        }
+        this.setState({
+            selectedSeats: newList,
+        });
+    };
+
+    render() {
+        if (this.state.panel === 'repertoire') {
+            return (
+                <div className="ui container">
+                    <Header />
+                    <Repertoire  
+                        onSessionClick={this.onSessionClick}
+                    />
+                </div>
+            );
+        }
+        if (this.state.panel === 'order') {
+            return (
+                <div className="ui container">
+                    <Header />
+                    <OrderPanel 
+                        movie={this.state.selectedMovie}
+                        session={this.state.selectedSession}
+                        seats={this.state.selectedSeats}
+                        onOrderSubmit={this.onOrderSubmit} 
+                        onPlaceSelect={this.onPlaceSelect}
+                    />
+                    <Modal 
+                        show={this.state.showModal}
+                        movie={this.state.selectedMovie}
+                        session={this.state.selectedSession}
+                        seats={this.state.selectedSeats}
+                        onExit={this.onModalExit}
+                        onReject={this.onModalReject}
+                        onConfirm={this.onModalConfirm}
+                    />
+                </div>
+            );
+        }     
+    }
 }
 
 export default App;
