@@ -46,7 +46,7 @@ class App extends React.Component {
     }
 
     onModalConfirm = () => {
-        // TODO: save info somewhere
+        // TODO: save info somewhere?
         this.setState({
             panel: 'repertoire',
             showModal: !this.state.showModal,

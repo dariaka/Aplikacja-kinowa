@@ -7,9 +7,7 @@ class PlacesSelectionPanel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            seat: [],
-            seatAvailable: [],
-            seatReserved: [],
+            seats: []
         };
 
         for (let rowIndex = 1; rowIndex <= settings.rows; rowIndex++) {
@@ -18,28 +16,11 @@ class PlacesSelectionPanel extends React.Component {
                 placeIndex <= settings.places;
                 placeIndex++
             ) {
-                this.state.seat.push({ row: rowIndex, place: placeIndex });
+                this.state.seats.push({ row: rowIndex, place: placeIndex });
             }
         }
     }
 
-    onClickData = (seat) => {
-        if (this.state.seatReserved.indexOf(seat) > -1) {
-            this.setState({
-                seatAvailable: this.state.seatAvailable.concat(seat),
-                seatReserved: this.state.seatReserved.filter(
-                    res => res !== seat
-                ),
-            });
-        } else {
-            this.setState({
-                seatReserved: this.state.seatReserved.concat(seat),
-                seatAvailable: this.state.seatAvailable.filter(
-                    res => res !== seat
-                ),
-            });
-        }
-    }
 
     render() {
         return (
@@ -61,11 +42,9 @@ class PlacesSelectionPanel extends React.Component {
                 </div>
                 <div>
                     <PlacesGrid
-                        seat={this.state.seat}
-                        available={this.state.seatAvailable}
-                        reserved={this.state.seatReserved}
+                        seats={this.state.seats}
                         session={this.props.session}
-                        onClickData={this.onClickData}
+                        onPlaceSelect={this.props.onPlaceSelect}
                     />
                 </div>
             </div>
