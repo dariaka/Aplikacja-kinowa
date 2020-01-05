@@ -16,7 +16,7 @@ class AvailableShowtimes extends React.Component {
         return (
             <Button 
                 key={session.id}
-                text={session.time.format('DD-MM HH:mm')} 
+                text={session.time.format('HH:mm')} 
                 active={this.ifActive(session.time)}
                 onButtonClick={() => this.goToReservationPanel(this.props.movie, session)} 
             />

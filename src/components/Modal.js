@@ -3,30 +3,91 @@ import React from 'react';
 import Button from './Button';
 
 class Modal extends React.Component {
-    confirmReservation = () => {
-        console.log('Confirm reservation');
-        this.props.onModalClose();
+    state = {
+        panel: 'order',
     };
 
-    rejectReservation = () => {
-        console.log('Reject reservation');
-        this.props.onModalClose();
+    randomTicket = length => {
+        let radom13chars = function() {
+            return Math.random()
+                .toString(16)
+                .substring(2, 15);
+        };
+        let loops = Math.ceil(length / 13);
+        return new Array(loops)
+            .fill(radom13chars)
+            .reduce((string, func) => {return string + func();}, '')
+            .substring(0, length);
     };
+
+    confirmReservation = () => {
+        this.setState({ panel: 'confirmation' });
+    };
+
+    renderedList = seats =>
+        seats.map(seat => {
+            return (
+                <p key={'r' + seat.row + 'p' + seat.place}>
+                    Row: {seat.row}, Seat: {seat.place}
+                </p>
+            );
+        });
 
     render() {
         if (!this.props.show) return null;
 
+        if (this.state.panel === 'confirmation')
+            return (
+                <div className="shader">
+                    <div className="modal">
+                        <h4>Congratulation!</h4>
+                        <p>Your ticket(s) has been successfully booked.</p>
+                        <p>Have a nice day!</p>
+                        <Button
+                            active={true}
+                            text={'Exit'}
+                            color={'#999'}
+                            onButtonClick={this.props.onConfirm}
+                        />
+                    </div>
+                </div>
+            );
+
         return (
             <div className="shader">
                 <div className="modal">
-                    Modal
+                    <h4>Order confirmation</h4>
+                    <p>Dear Customer, please confirm your order.</p>
+                    <div>
+                        <p>Booking ID: {this.randomTicket(8)}</p>
+                        <p>
+                            Show Date & Time:{' '}
+                            {this.props.session.time.format(
+                                'dddd, MMMM Do YYYY, HH:mm'
+                            )}
+                        </p>
+                        <p>Movie Name: {this.props.movie.title}</p>
+                    </div>
+                    <div>
+                        <p>{this.props.seats.length} Tickets:</p>
+                        <div>{this.renderedList(this.props.seats)}</div>
+                    </div>
                     <Button
-                        text={'Confirm'}
-                        onButtonClick={this.confirmReservation}
+                        active={true}
+                        text={'Back to repertoire'}
+                        color={'#999'}
+                        onButtonClick={this.props.onReject}
                     />
                     <Button
-                        text={'Reject'}
-                        onButtonClick={this.rejectReservation}
+                        active={true}
+                        text={'Exit'}
+                        color={'#999'}
+                        onButtonClick={this.props.onExit}
+                    />
+                    <Button
+                        active={true}
+                        text={'Confirm'}
+                        onButtonClick={this.confirmReservation}
                     />
                 </div>
             </div>

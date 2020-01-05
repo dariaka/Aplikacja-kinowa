@@ -1560,4 +1560,16 @@ const sessions = [
   }
 ]
 
-export { movies, sessions };
+const settings = {
+  days: 7,
+  sessionsPerDay: 12,
+  interval: 45, //minutes before next movie starts
+  rows: 5,
+  places: 10, // places in one row
+};
+
+export {
+  movies,
+  sessions,
+  settings
+};
