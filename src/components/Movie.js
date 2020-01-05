@@ -4,6 +4,7 @@ import MovieInfo from './MovieInfo';
 import AvailableShowtimes from './AvailableShowtimes';
 
 function Movie(props) {
+    
     return (
         <div className="wrapper">
             Movie

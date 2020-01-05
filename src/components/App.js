@@ -11,13 +11,8 @@ class App extends React.Component {
         panel: 'dev-mode', // TODO: when app is finished change that to  'repertoire'
         showModal: false,
         selectedDay: moment(),
-        movies: [],
         selectedMovie: null,
         selectedSession: null,
-    };
-
-    onMoviesFetched = fetchedMovies => {
-        this.setState({ movies: fetchedMovies });
     };
 
     onOrderSubmit = () => {
