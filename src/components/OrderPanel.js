@@ -11,14 +11,14 @@ class OrderPanel extends React.Component {
   render() {
     return (
       <div className="ui container">
-        <div className="ui text menu" style={{ paddingTop: "40px" }}>
-          <div className="header item" style={{ fontsize: "1.25em" }}>
+        <div className="ui text menu" style={{ padding: "40px 0" }}>
+          <div className="header item" style={{ fontSize: "1.25em" }}>
             Booking
           </div>
         </div>
         <div className="ui grid">
           <div className="six wide column">
-            <div>
+            <div className="five wide column">
               <InfoPanel
                 movie={this.props.movie}
                 session={this.props.session}
