@@ -6,15 +6,12 @@
 * [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Features](#features)
 * [Status](#status)
 * [Copyrights](#copyrights)
 * [Authors](#authors)
 
 ## General info
 The main purpose of this application is to choose a movie and buy a cinema ticket.
-
-## Screenshots
 
 ## Technologies
 
@@ -27,20 +24,12 @@ The main purpose of this application is to choose a movie and buy a cinema ticke
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Features
-List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
-
-To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
-
 ## Status
 Project is: _in progress_
 
 ## Copyrights
+External files used in the project:
+* User Interface - https://semantic-ui.com/
 
 ## Authors
 Created by CodersCamp's members under the supervision of Małgorzata Bousoltane:
