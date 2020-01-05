@@ -22,9 +22,13 @@ class Modal extends React.Component {
         this.setState({panel: 'confirmation'});
     };
 
-    rejectReservation = () => {
-        this.setState({show: !this.props.show});
-    };
+    renderedList = this.props.seats.map(seat => {
+        return (
+            <div key={'r' + seat.row + 'p' + seat.place}>
+                Row: {seat.row}, Seat: {seat.place}
+            </div>
+        );
+    });
 
     render() {
         if (!this.props.show) return null;
@@ -45,7 +49,7 @@ class Modal extends React.Component {
         </div>
         );
 
-        if (this.state.panel === 'order')  return (
+        return (
             <div className="shader">
                 <div className="modal">
                     <h4>Order confirmation</h4>
@@ -56,9 +60,8 @@ class Modal extends React.Component {
                         <p>Movie Name: {this.props.movie.title}</p>
                     </div>
                     <div>
-                        <p>2 Tickets:</p>
-                        <p>Row 3, Seat 5</p>
-                        <p>Row 3, Seat 5</p>
+                        <p>{this.props.seats.length} Tickets:</p>
+                        <div>{this.renderedList}</div>
                     </div>
                     <Button
                         active={true}

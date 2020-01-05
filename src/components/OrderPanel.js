@@ -5,7 +5,7 @@ import PlacesSelectionPanel from "./PlacesSelectionPanel";
 
 class OrderPanel extends React.Component {
     state = {
-        reservedSeats:[]
+        reservedSeats:[{row: 1, place: 1},{row: 1, place: 2},   {row: 2, place: 1}]
     }
 
     render() {
