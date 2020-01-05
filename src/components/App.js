@@ -54,6 +54,20 @@ class App extends React.Component {
         });
     }
 
+    onPlaceSelect = seat => {
+        let newList = this.props.seats;
+        if (this.state.selectedSeats.some(reservedSeat => {
+            return reservedSeat.row === seat.row && reservedSeat.place === seat.place})) {
+                newList = this.props.seats.filter(reservedSeat => {
+                    return !(reservedSeat.row === seat.row && reservedSeat.place === seat.place)});
+        } else {
+            newList = this.state.selectedSeats.concat(seat);
+        }
+        this.setState({
+            selectedSeats: newList,
+        });
+    };
+
     render() {
         if (this.state.panel === 'repertoire') {
             return (
@@ -74,6 +88,7 @@ class App extends React.Component {
                         session={this.state.selectedSession}
                         seats={this.state.selectedSeats}
                         onOrderSubmit={this.onOrderSubmit} 
+                        onPlaceSelect={this.onPlaceSelect}
                     />
                     <Modal 
                         show={this.state.showModal}

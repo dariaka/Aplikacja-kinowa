@@ -4,23 +4,8 @@ import InfoPanel from './InfoPanel';
 import PlacesSelectionPanel from './PlacesSelectionPanel';
 
 class OrderPanel extends React.Component {
-    state = {
-        reservedSeats: [],
-    };
 
-    onPlaceSelect = seat => {
-        let newList = this.state.reservedSeats;
-        if (this.state.reservedSeats.some(reservedSeat => {
-            return reservedSeat.row === seat.row && reservedSeat.place === seat.place})) {
-                newList = this.state.reservedSeats.filter(reservedSeat => {
-                    return !(reservedSeat.row === seat.row && reservedSeat.place === seat.place)});
-        } else {
-            newList = this.state.reservedSeats.concat(seat);
-        }
-        this.setState({
-            reservedSeats: newList,
-        });
-    };
+    
 
     render() {
         return (
@@ -67,7 +52,7 @@ class OrderPanel extends React.Component {
                         <div>
                             <PlacesSelectionPanel
                                 session={this.props.session}
-                                onPlaceSelect={this.onPlaceSelect}
+                                onPlaceSelect={this.props.onPlaceSelect}
                             />
                         </div>
                     </div>
