@@ -10,8 +10,10 @@ class OrderPanel extends React.Component {
 
     onPlaceSelect = seat => {
         let newList = this.state.reservedSeats;
-        if (this.state.reservedSeats.some(reservedSeat => reservedSeat.row === seat.row && reservedSeat.place === seat.place)) {
-            newList = this.state.reservedSeats.filter(reservedSeat => !(reservedSeat.row === seat.row && reservedSeat.place === seat.place));
+        if (this.state.reservedSeats.some(reservedSeat => {
+            return reservedSeat.row === seat.row && reservedSeat.place === seat.place})) {
+                newList = this.state.reservedSeats.filter(reservedSeat => {
+                    return !(reservedSeat.row === seat.row && reservedSeat.place === seat.place)});
         } else {
             newList = this.state.reservedSeats.concat(seat);
         }

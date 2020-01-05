@@ -12,7 +12,7 @@ class Place extends React.Component {
     }
 
     getStyle = () => {
-        if (this.props.state==='reserved')  return "{background: '#999', cursor: 'default'}";
+        if (this.props.state==='reserved')  return {background: '#999', cursor: 'default'};
         if (this.props.state==='available' && this.state.selected) return {background: '#EB7D18', cursor: 'pointer'};
         return {background: 'green', cursor: 'pointer'};
     }
@@ -22,9 +22,8 @@ class Place extends React.Component {
             <button 
                 className="small ui green button" 
                 onClick={this.props.state==='available' ? this.onSelect : null}
-                style = {this.getStyle()}>
-                    {`${this.props.seat.row}/${this.props.seat.place}`}
-            </button>
+                style = {this.getStyle()}
+            />
         );
     }
 
