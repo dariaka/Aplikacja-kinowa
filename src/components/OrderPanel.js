@@ -38,7 +38,6 @@ class OrderPanel extends React.Component {
           <div className="ten wide column">
             <div className="column">
               <h3 className="red">Select seats</h3>
-              {/* <p>Please select seats / 4 seats selected!</p> */}
               <div className="ui divider"></div>
             </div>
 
