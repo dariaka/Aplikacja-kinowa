@@ -58,7 +58,7 @@ class App extends React.Component {
         let newList = this.props.seats;
         if (this.state.selectedSeats.some(reservedSeat => {
             return reservedSeat.row === seat.row && reservedSeat.place === seat.place})) {
-                newList = this.props.seats.filter(reservedSeat => {
+                newList = this.state.selectedSeats.filter(reservedSeat => {
                     return !(reservedSeat.row === seat.row && reservedSeat.place === seat.place)});
         } else {
             newList = this.state.selectedSeats.concat(seat);
