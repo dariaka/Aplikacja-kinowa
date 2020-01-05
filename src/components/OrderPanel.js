@@ -4,9 +4,6 @@ import InfoPanel from './InfoPanel';
 import PlacesSelectionPanel from './PlacesSelectionPanel';
 
 class OrderPanel extends React.Component {
-
-    
-
     render() {
         return (
             <div className="ui container">
@@ -23,6 +20,7 @@ class OrderPanel extends React.Component {
                                 session={this.props.session}
                                 seats={this.props.seats}
                                 onOrderSubmit={this.props.onOrderSubmit}
+                                onBackButtonClick={this.props.onBackButtonClick} 
                             />
                         </div>
                     </div>
