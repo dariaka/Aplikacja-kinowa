@@ -54,6 +54,13 @@ class App extends React.Component {
         });
     }
 
+    onBackButtonClick = () => {
+        this.setState({
+            panel: 'repertoire',
+            selectedSeats: [],
+        });
+    }
+
     onPlaceSelect = seat => {
         let newList = this.props.seats;
         if (this.state.selectedSeats.some(reservedSeat => {
@@ -87,6 +94,7 @@ class App extends React.Component {
                         movie={this.state.selectedMovie}
                         session={this.state.selectedSession}
                         seats={this.state.selectedSeats}
+                        onBackButtonClick={this.onBackButtonClick} 
                         onOrderSubmit={this.onOrderSubmit} 
                         onPlaceSelect={this.onPlaceSelect}
                     />
