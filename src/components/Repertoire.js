@@ -25,7 +25,7 @@ class Repertoire extends React.Component {
             // get data from sessions database
         const sessionsForActiveDay = sessions.filter(session => {
             return session.time.format('DD-MM-YYYY') === this.days[activeDayId].format('DD-MM-YYYY');
-        })
+        });
         // get data from movies database
         const sessionsForActiveDayIds = sessionsForActiveDay.map(({...session}) => session.id);
         const moviesForActiveDay = movies.filter(movie =>
@@ -36,7 +36,6 @@ class Repertoire extends React.Component {
             movies: moviesForActiveDay, 
             sessions: sessionsForActiveDay
         });
-        this.props.onMoviesFetched(moviesForActiveDay);
     }
 
     onDayClicked = (e) => {
@@ -55,13 +54,13 @@ class Repertoire extends React.Component {
 
     renderedList = this.days.map((day, id) => {
         return (
-            <a key={id}
+            <div key={id}
                 onClick={this.onDayClicked}
                 id={"day" + id}
                 className={id === this.state.activeDayId ? "active item" : "item"}
-                style={{ paddingLeft: "20px" }} >
+                style={{ cursor: "pointer", paddingLeft: "20px" }} >
                 {id === 0 ? day.format("[Today]") : day.format("dddd")}
-            </a>
+            </div>
         );
     })
     
