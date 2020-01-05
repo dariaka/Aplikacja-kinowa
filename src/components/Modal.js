@@ -24,9 +24,9 @@ class Modal extends React.Component {
 
     renderedList = this.props.seats.map(seat => {
         return (
-            <div key={'r' + seat.row + 'p' + seat.place}>
+            <p key={'r' + seat.row + 'p' + seat.place}>
                 Row: {seat.row}, Seat: {seat.place}
-            </div>
+            </p>
         );
     });
 
