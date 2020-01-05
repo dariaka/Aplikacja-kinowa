@@ -22,7 +22,7 @@ class OrderPanel extends React.Component {
               <InfoPanel
                 movie={this.props.movie}
                 session={this.props.session}
-                reservedSeats={this.state.reservedSeats}
+                seats={this.props.seats}
                 onOrderSubmit={this.props.onOrderSubmit}
               />
             </div>

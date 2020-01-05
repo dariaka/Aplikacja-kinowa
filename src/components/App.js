@@ -72,6 +72,7 @@ class App extends React.Component {
                     <OrderPanel 
                         movie={this.state.selectedMovie}
                         session={this.state.selectedSession}
+                        seats={this.state.selectedSeats}
                         onOrderSubmit={this.onOrderSubmit} 
                     />
                     <Modal 

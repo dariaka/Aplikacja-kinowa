@@ -17,14 +17,14 @@ function InfoPanel(props) {
 
       <div style={{ padding: "0" }}>
         <h4>{props.session.time.format("dddd HH:mm")}</h4>
-        <p>{props.reservedSeats.length} seats selected.</p>
+        <p>{props.seats.length} seats selected.</p>
       </div>
 
       <div className="row">
         <Button
           text={"Submit"}
-          active={props.reservedSeats.length ? true : false}
-          onButtonClick={() => props.onOrderSubmit(props.reservedSeats)}
+          active={props.seats.length ? true : false}
+          onButtonClick={() => props.onOrderSubmit(props.seats)}
         />
       </div>
     </div>

@@ -22,6 +22,10 @@ class Modal extends React.Component {
 
     confirmReservation = () => {
         this.setState({ panel: 'confirmation' });
+
+        this.props.session.seatsBooked = this.props.session.seatsBooked.concat(
+            this.props.seats
+        );
     };
 
     renderedList = seats =>
