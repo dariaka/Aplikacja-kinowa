@@ -8,6 +8,13 @@ class OrderPanel extends React.Component {
     reservedSeats: []
   };
 
+  onPlaceSelect = seat => {
+      const newList = this.state.reservedSeats.concat(seat);
+      this.setState({
+          reservedSeats: newList
+      });
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -54,7 +61,6 @@ class OrderPanel extends React.Component {
             <div>
               <PlacesSelectionPanel
                 session={this.props.session}
-                unavailableSeats={this.props.session.seatsBooked}
                 onPlaceSelect={this.onPlaceSelect}
               />
             </div>
