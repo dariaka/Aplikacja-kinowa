@@ -12,7 +12,7 @@ To check out the app, visit the Heroku page: http://movie-seats-booking.herokuap
 * [Authors](#authors)
 
 ## General info
-The main purpose of this application is to choose a movie and buy a cinema ticket.
+The main purpose of this application is to choose a movie and buy cinema tickets.
 
 ## Technologies
 
