@@ -1,5 +1,6 @@
-# Project Name
-> React application for online movie tickets booking.
+# Project Description
+> React application for online movie tickets booking.<br />
+To check out the app, visit the Heroku page: http://movie-seats-booking.herokuapp.com/
 
 ## Table of contents
 * [General info](#general-info)
