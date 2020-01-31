@@ -1,6 +1,6 @@
-import "./AvailableShowtimes.css";
 import React from "react";
 import Button from "./Button";
+import "./AvailableShowtimes.css";
 
 class AvailableShowtimes extends React.Component {
   ifActive = time => {

@@ -1,15 +1,13 @@
-import './Repertoire.css';
 import React from 'react';
+import moment from 'moment';
 import MoviesList from './MoviesList';
-import { movies, sessions } from "../db";
-
-const moment = require('moment');
+import './Repertoire.css';
 
 class Repertoire extends React.Component {
     state = {
-      activeDayId: 0,
-      movies: [],
-      sessions: []
+        activeDayId: 0,
+        movies: [],
+        sessions: []
     };
 
     days = [
@@ -19,18 +17,22 @@ class Repertoire extends React.Component {
         moment().add(3, "days"),
         moment().add(4, "days"),
         moment().add(5, "days"),
-        moment().add(6, "days")];
+        moment().add(6, "days")
+    ];
 
-    updateStates = (activeDayId) => {
-            // get data from sessions database
-        const sessionsForActiveDay = sessions.filter(session => {
+    updateState = (activeDayId) => {
+        // TO-DO
+        // re-wright this using HOF
+        const sessionsForActiveDay = this.props.allSessions.filter(session => {
             return session.time.format('DD-MM-YYYY') === this.days[activeDayId].format('DD-MM-YYYY');
         });
-        // get data from movies database
         const sessionsForActiveDayIds = sessionsForActiveDay.map(({...session}) => session.id);
-        const moviesForActiveDay = movies.filter(movie =>
-            movie.sessions.some(sessionId => sessionsForActiveDayIds.includes(sessionId)));
-        // change the state
+        const moviesForActiveDay = this.props.allMovies.filter(movie =>
+            movie.sessions.some(sessionId => 
+                sessionsForActiveDayIds.includes(sessionId)
+            )
+        );
+
         this.setState({
             activeDayId, 
             movies: moviesForActiveDay, 
@@ -39,18 +41,21 @@ class Repertoire extends React.Component {
     }
 
     onDayClicked = (e) => {
-        // move class "active" to clicked element
         document.getElementById(`day${this.state.activeDayId}`).classList.remove('active');
-        e.currentTarget.classList.toggle('active');
-        // get active day id
+        e.currentTarget.classList.add('active');
         const activeDayId = Number(e.currentTarget.id.replace("day", ""));
-        // get data from database and update the state
-        this.updateStates(activeDayId);   
+        this.updateState(activeDayId);   
     }
 
     componentDidMount() {
-        this.updateStates(this.state.activeDayId);
-      }
+        this.updateState(this.state.activeDayId);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.allMovies !== prevProps.allMovies && this.props.allSessions !== prevProps.allSessions) {
+            this.updateState(this.state.activeDayId);
+        }
+    }
 
     renderedList = this.days.map((day, id) => {
         return (

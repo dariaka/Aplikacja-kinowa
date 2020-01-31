@@ -1,7 +1,7 @@
-import './InfoPanel.css';
 import React from 'react';
 import MovieInfo from './MovieInfo';
 import Button from './Button';
+import './InfoPanel.css';
 
 function InfoPanel(props) {
     return (

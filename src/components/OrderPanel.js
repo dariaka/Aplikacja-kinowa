@@ -1,7 +1,7 @@
-import './OrderPanel.css';
 import React from 'react';
 import InfoPanel from './InfoPanel';
 import PlacesSelectionPanel from './PlacesSelectionPanel';
+import './OrderPanel.css';
 
 class OrderPanel extends React.Component {
     render() {

@@ -1,5 +1,5 @@
-import "./MovieInfo.css";
 import React from "react";
+import "./MovieInfo.css";
 
 function MovieInfo({ title, summary, image, isVertical }) {
   if (isVertical) {

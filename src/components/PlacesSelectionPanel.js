@@ -1,7 +1,7 @@
-import './PlacesSelectionPanel.css';
 import React from 'react';
-import PlacesGrid from './PlacesGrid';
 import { settings } from '../db';
+import PlacesGrid from './PlacesGrid';
+import './PlacesSelectionPanel.css';
 
 class PlacesSelectionPanel extends React.Component {
     constructor(props) {
@@ -11,11 +11,7 @@ class PlacesSelectionPanel extends React.Component {
         };
 
         for (let rowIndex = 1; rowIndex <= settings.rows; rowIndex++) {
-            for (
-                let placeIndex = 1;
-                placeIndex <= settings.places;
-                placeIndex++
-            ) {
+            for (let placeIndex = 1; placeIndex <= settings.places; placeIndex++) {
                 this.state.seats.push({ row: rowIndex, place: placeIndex });
             }
         }
@@ -27,15 +23,7 @@ class PlacesSelectionPanel extends React.Component {
             <div className="ui container">
                 <div className="ui centered grid">
                     <div className="row">
-                        <div
-                            className="center aligned ten wide column"
-                            style={{
-                                backgroundColor: '#C4C4C4',
-                                textTransform: 'uppercase',
-                                fontSize: '1em',
-                                padding: '4px 0',
-                                marginTop: '40px',
-                            }}>
+                        <div className="center aligned ten wide column">
                             Screen
                         </div>
                     </div>

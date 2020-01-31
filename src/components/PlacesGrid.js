@@ -1,6 +1,6 @@
-import './PlacesGrid.css';
 import React from 'react';
 import Place from './Place';
+import './PlacesGrid.css';
 
 class PlacesGrid extends React.Component {
     renderedSeats = seats => 
@@ -20,8 +20,6 @@ class PlacesGrid extends React.Component {
                 </td>
             );
         });
-
-//this.props.session.seatsBooked.some(seatBooked => {return seatBooked.row === seat.row && seatBooked.place === seat.place})
 
     render() {
         return (

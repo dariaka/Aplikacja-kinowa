@@ -1,12 +1,12 @@
-import './Place.css';
 import React from 'react';
+import './Place.css';
 
 class Place extends React.Component {
     state = {
         selected: false
     }
 
-    onSelect = () => {
+    onSwitchSelect = () => {
         this.setState({selected: !this.state.selected});
         this.props.onPlaceSelect(this.props.seat);
     }
@@ -21,7 +21,7 @@ class Place extends React.Component {
         return (
             <button 
                 className="small ui green button" 
-                onClick={this.props.state==='available' ? this.onSelect : null}
+                onClick={this.props.state==='available' ? this.onSwitchSelect : null}
                 style = {this.getStyle()}
             />
         );
