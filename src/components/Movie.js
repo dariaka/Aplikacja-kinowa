@@ -1,7 +1,6 @@
 import React from "react";
 import MovieInfo from "./MovieInfo";
 import AvailableShowtimes from "./AvailableShowtimes";
-import "./Movie.css";
 
 function Movie(props) {
   return (

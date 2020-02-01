@@ -1,9 +1,7 @@
 import React from "react";
 import Movie from "./Movie";
-import "./MoviesList.css";
 
 function MoviesList(props) {
-
   const renderedList = props.movies.map(movie => {
     const matchingSessions = props.sessions.filter(session =>
       movie.sessions.includes(session.id)

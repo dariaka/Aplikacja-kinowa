@@ -63,7 +63,7 @@ class Repertoire extends React.Component {
                 onClick={this.onDayClicked}
                 id={"day" + id}
                 className={id === this.state.activeDayId ? "active item" : "item"}
-                style={{ cursor: "pointer", paddingLeft: "20px" }} >
+            >
                 {id === 0 ? day.format("[Today]") : day.format("dddd")}
             </div>
         );
@@ -74,8 +74,8 @@ class Repertoire extends React.Component {
             <div className="ui container">
               <div className="ui grid">
                 <div className="eight column centered row">
-                  <div className="ui text menu" style={{ padding: "40px 0" }}>
-                    <div className="header item" style={{ fontSize: "1.25em" }}>
+                  <div className="ui text menu">
+                    <div className="header item">
                       Repertoire
                     </div>
                     <div className="ui orange text right menu">
