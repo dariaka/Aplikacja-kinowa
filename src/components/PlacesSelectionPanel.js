@@ -1,23 +1,32 @@
 import React from 'react';
-import { settings } from '../db';
 import PlacesGrid from './PlacesGrid';
 import './PlacesSelectionPanel.css';
 
 class PlacesSelectionPanel extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            seats: []
-        };
-        for (let row = 1; row <= settings.rows; row++) {
-            for (let place = 1; place <= settings.places; place++) {
-                this.state.seats.push({ row, place });
-            }
-        }
-    }
     render() {
         return (
             <div className="ui container">
+                <div className="column">
+                        <h3 className="red">Select seats</h3>
+                        <div className="ui divider"></div>
+                    </div>
+
+                    <div className="ui four column grid">
+                        <div className="row">
+                            <div className="column">
+                                <i className="square full green icon"></i>
+                                Available
+                            </div>
+                            <div className="column">
+                                <i className="square full grey icon"></i>
+                                Unavailable
+                            </div>
+                            <div className="column">
+                                <i className="square full orange icon"></i>
+                                Your choice
+                            </div>
+                        </div>
+                    </div>
                 <div className="ui centered grid">
                     <div className="row">
                         <div className="center aligned ten wide column">
@@ -27,7 +36,6 @@ class PlacesSelectionPanel extends React.Component {
                 </div>
                 <div>
                     <PlacesGrid
-                        seats={this.state.seats}
                         session={this.props.session}
                         onPlaceSelect={this.props.onPlaceSelect}
                     />

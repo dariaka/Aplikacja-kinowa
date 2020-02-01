@@ -1,8 +1,21 @@
 import React from 'react';
+import { settings } from '../db';
 import Place from './Place';
 import './PlacesGrid.css';
 
 class PlacesGrid extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            seats: []
+        };
+        for (let row = 1; row <= settings.rows; row++) {
+            for (let place = 1; place <= settings.places; place++) {
+                this.state.seats.push({ row, place });
+            }
+        }
+    }
+
     renderedSeats = seats => 
         seats.map(seat => {
             const ifReserved = () => {
@@ -27,7 +40,7 @@ class PlacesGrid extends React.Component {
                 <div className="grid">
                     <table>
                         <tbody>
-                            <tr>{this.renderedSeats(this.props.seats)}</tr>
+                            <tr>{this.renderedSeats(this.state.seats)}</tr>
                         </tbody>
                     </table>
                 </div>
