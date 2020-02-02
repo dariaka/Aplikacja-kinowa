@@ -49,12 +49,12 @@ class PlacesGrid extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                    <table>
-                        <tbody>
-                            {this.renderRows(this.state.seats)}
-                        </tbody>
-                    </table>
+            <div className="cinema-hall">
+                        <table>
+                            <tbody>
+                                {this.renderRows(this.state.seats)}
+                            </tbody>
+                        </table>
             </div>
         );
     }
