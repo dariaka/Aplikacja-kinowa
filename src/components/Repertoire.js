@@ -21,17 +21,15 @@ class Repertoire extends React.Component {
     ];
 
     updateState = (activeDayId) => {
-        // TO-DO
-        // re-wright this using HOF
-        const sessionsForActiveDay = this.props.allSessions.filter(session => {
-            return session.time.format('DD-MM-YYYY') === this.days[activeDayId].format('DD-MM-YYYY');
-        });
-        const sessionsForActiveDayIds = sessionsForActiveDay.map(({...session}) => session.id);
-        const moviesForActiveDay = this.props.allMovies.filter(movie =>
-            movie.sessions.some(sessionId => 
-                sessionsForActiveDayIds.includes(sessionId)
-            )
-        );
+        const isActiveDay = session => session.time.format('DD-MM-YYYY') === this.days[activeDayId].format('DD-MM-YYYY');
+        const sessionsForActiveDay = this.props.allSessions.filter(isActiveDay);
+
+        const sessionToId = ({...session}) => session.id;
+        const sessionsForActiveDayIds = sessionsForActiveDay.map(sessionToId);
+
+        const isSessionForActiveDay = sessionId => sessionsForActiveDayIds.includes(sessionId);
+        const movieForActiveDay = movie => movie.sessions.some(isSessionForActiveDay);
+        const moviesForActiveDay = this.props.allMovies.filter(movieForActiveDay);
 
         this.setState({
             activeDayId, 
