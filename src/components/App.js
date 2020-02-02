@@ -1,19 +1,21 @@
 import React from "react";
+import moment from "moment";
+import { movies, sessions } from "../db";
 import Header from "./Header";
 import Repertoire from "./Repertoire";
 import OrderPanel from "./OrderPanel";
 import Modal from "./Modal";
 
-const moment = require("moment");
-
 class App extends React.Component {
     state = {
         panel: 'repertoire',
         showModal: false,
+        allMovies: [],
+        allSessions: [],
         selectedDay: moment(),
         selectedMovie: null,
         selectedSession: null,
-        selectedSeats: []
+        selectedSeats: [],
     };
 
     onSessionClick = (movie, session) => {
@@ -46,10 +48,15 @@ class App extends React.Component {
     }
 
     onModalConfirm = () => {
-        // TODO: save info somewhere?
+        const updatedSessions=this.state.allSessions.map(({...session}) => {
+            if (session.id !== this.state.selectedSession.id) return session;
+            session.seatsBooked = session.seatsBooked.concat(this.state.selectedSeats);
+            return session
+        }); 
         this.setState({
             panel: 'repertoire',
             showModal: !this.state.showModal,
+            allSessions: updatedSessions,
             selectedSeats: [],
         });
     }
@@ -63,6 +70,8 @@ class App extends React.Component {
 
     onPlaceSelect = seat => {
         let newList = this.props.seats;
+        // TO-DO
+        // re-wright this using HOF
         if (this.state.selectedSeats.some(reservedSeat => {
             return reservedSeat.row === seat.row && reservedSeat.place === seat.place})) {
                 newList = this.state.selectedSeats.filter(reservedSeat => {
@@ -75,12 +84,21 @@ class App extends React.Component {
         });
     };
 
+    componentDidMount() {
+        this.setState({
+            allMovies: movies,
+            allSessions: sessions,
+        });
+    }
+
     render() {
         if (this.state.panel === 'repertoire') {
             return (
                 <div className="ui container">
                     <Header />
                     <Repertoire  
+                        allMovies={this.state.allMovies}
+                        allSessions={this.state.allSessions}
                         onSessionClick={this.onSessionClick}
                     />
                 </div>

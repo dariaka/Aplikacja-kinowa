@@ -1,7 +1,7 @@
-import './InfoPanel.css';
 import React from 'react';
 import MovieInfo from './MovieInfo';
 import Button from './Button';
+import './InfoPanel.css';
 
 function InfoPanel(props) {
     return (
@@ -15,7 +15,7 @@ function InfoPanel(props) {
                 />
             </div>
 
-            <div style={{ padding: '0' }}>
+            <div className="selected-seats">
                 <h4>{props.session.time.format('dddd HH:mm')}</h4>
                 <p>{props.seats.length} seats selected.</p>
             </div>
