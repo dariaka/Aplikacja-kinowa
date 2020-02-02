@@ -20,13 +20,12 @@ class Place extends React.Component {
     render() {
         return (
             <button 
-                className="small ui green button" 
+                className="small ui button" 
                 onClick={this.props.state==='available' ? this.onSwitchSelect : null}
                 style = {this.getStyle()}
             />
         );
     }
-
 }
 
 export default Place;
