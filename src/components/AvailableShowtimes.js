@@ -8,12 +8,12 @@ function AvailableShowtimes (props) {
 
     const renderedList = props.sessions.map(session => {
         return (
-            <Button
-                key={session.id}
-                text={session.time.format("HH:mm")}
-                active={ifActive(session.time)}
-                onButtonClick={() => props.onSessionClick(props.movie, session)}
-            />
+                <Button
+                    key={session.id}
+                    text={session.time.format("HH:mm")}
+                    active={ifActive(session.time)}
+                    onButtonClick={() => props.onSessionClick(props.movie, session, "/order")}
+                />
             );
     });
 

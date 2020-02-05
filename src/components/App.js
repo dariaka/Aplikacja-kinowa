@@ -1,14 +1,15 @@
 import React from "react";
+import {BrowserRouter as Router, Switch, Route, withRouter} from "react-router-dom";
 import moment from "moment";
-import { movies, sessions } from "../db";
+import {movies, sessions} from "../db";
 import Header from "./Header";
 import Repertoire from "./Repertoire";
 import OrderPanel from "./OrderPanel";
+import PageNotFound from "./PageNotFound";
 import Modal from "./Modal";
 
 class App extends React.Component {
     state = {
-        panel: 'repertoire',
         showModal: false,
         allMovies: [],
         allSessions: [],
@@ -16,13 +17,14 @@ class App extends React.Component {
         selectedMovie: null,
         selectedSession: null,
         selectedSeats: [],
+        goTo: "/",
     };
 
-    onSessionClick = (movie, session) => {
+    onSessionClick = (movie, session, path) => {
         this.setState({
-            panel: 'order',
             selectedMovie: movie,
-            selectedSession: session
+            selectedSession: session,
+            goTo: path
         });
     }
 
@@ -41,9 +43,10 @@ class App extends React.Component {
 
     onModalReject = () => {
         this.setState({
-            panel: 'repertoire',
             showModal: !this.state.showModal,
+            selectedSession: null,
             selectedSeats: [],
+            goTo: "/"
         });
     }
 
@@ -54,24 +57,23 @@ class App extends React.Component {
             return session
         }); 
         this.setState({
-            panel: 'repertoire',
             showModal: !this.state.showModal,
             allSessions: updatedSessions,
+            selectedSession: null,
             selectedSeats: [],
+            goTo: "/",
         });
     }
 
     onBackButtonClick = () => {
         this.setState({
-            panel: 'repertoire',
             selectedSeats: [],
+            goTo: "/",
         });
     }
 
     onPlaceSelect = seat => {
         let newList = this.props.seats;
-        // TO-DO
-        // re-wright this using HOF
         if (this.state.selectedSeats.some(reservedSeat => {
             return reservedSeat.row === seat.row && reservedSeat.place === seat.place})) {
                 newList = this.state.selectedSeats.filter(reservedSeat => {
@@ -91,44 +93,53 @@ class App extends React.Component {
         });
     }
 
-    render() {
-        if (this.state.panel === 'repertoire') {
-            return (
-                <div className="ui container">
-                    <Header />
-                    <Repertoire  
-                        allMovies={this.state.allMovies}
-                        allSessions={this.state.allSessions}
-                        onSessionClick={this.onSessionClick}
-                    />
-                </div>
-            );
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.goTo !== this.state.goTo || prevState.selectedSession !== this.state.selectedSession) {
+            this.props.history.push(this.state.goTo);
         }
-        if (this.state.panel === 'order') {
-            return (
-                <div className="ui container">
-                    <Header />
-                    <OrderPanel 
-                        movie={this.state.selectedMovie}
-                        session={this.state.selectedSession}
-                        seats={this.state.selectedSeats}
-                        onBackButtonClick={this.onBackButtonClick} 
-                        onOrderSubmit={this.onOrderSubmit} 
-                        onPlaceSelect={this.onPlaceSelect}
-                    />
-                    <Modal 
-                        show={this.state.showModal}
-                        movie={this.state.selectedMovie}
-                        session={this.state.selectedSession}
-                        seats={this.state.selectedSeats}
-                        onExit={this.onModalExit}
-                        onReject={this.onModalReject}
-                        onConfirm={this.onModalConfirm}
-                    />
-                </div>
-            );
-        }     
+    }
+
+    render() {
+        return (
+                <Switch>
+                    <Route exact path="/">
+                        <div className="ui container">
+                            <Header />
+                            <Repertoire  
+                                allMovies={this.state.allMovies}
+                                allSessions={this.state.allSessions}
+                                onSessionClick={this.onSessionClick}
+                            />
+                        </div>
+                    </Route>
+                    <Route path="/order">
+                        <div className="ui container">
+                            <Header />
+                            <OrderPanel 
+                                movie={this.state.selectedMovie}
+                                session={this.state.selectedSession}
+                                seats={this.state.selectedSeats}
+                                onBackButtonClick={this.onBackButtonClick} 
+                                onOrderSubmit={this.onOrderSubmit} 
+                                onPlaceSelect={this.onPlaceSelect}
+                            />
+                            <Modal 
+                                show={this.state.showModal}
+                                movie={this.state.selectedMovie}
+                                session={this.state.selectedSession}
+                                seats={this.state.selectedSeats}
+                                onExit={this.onModalExit}
+                                onReject={this.onModalReject}
+                                onConfirm={this.onModalConfirm}
+                            />
+                        </div>
+                    </Route>
+                    <Route path="*" >
+                        <PageNotFound/>
+                    </Route>
+                </Switch>
+        )
     }
 }
 
-export default App;
+export default withRouter(App);
