@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Switch, Route, withRouter} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, withRouter, Redirect} from "react-router-dom";
 import moment from "moment";
 import {movies, sessions} from "../db";
 import Header from "./Header";
@@ -44,6 +44,7 @@ class App extends React.Component {
     onModalReject = () => {
         this.setState({
             showModal: !this.state.showModal,
+            selectedMovie: null,
             selectedSession: null,
             selectedSeats: [],
             goTo: "/"
@@ -59,6 +60,7 @@ class App extends React.Component {
         this.setState({
             showModal: !this.state.showModal,
             allSessions: updatedSessions,
+            selectedMovie: null,
             selectedSession: null,
             selectedSeats: [],
             goTo: "/",
@@ -67,6 +69,8 @@ class App extends React.Component {
 
     onBackButtonClick = () => {
         this.setState({
+            selectedMovie: null,
+            selectedSession: null,
             selectedSeats: [],
             goTo: "/",
         });
@@ -94,7 +98,7 @@ class App extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.goTo !== this.state.goTo || prevState.selectedSession !== this.state.selectedSession) {
+        if (prevState.goTo !== this.state.goTo) {
             this.props.history.push(this.state.goTo);
         }
     }
@@ -112,27 +116,34 @@ class App extends React.Component {
                             />
                         </div>
                     </Route>
-                    <Route path="/order">
-                        <div className="ui container">
-                            <Header />
-                            <OrderPanel 
-                                movie={this.state.selectedMovie}
-                                session={this.state.selectedSession}
-                                seats={this.state.selectedSeats}
-                                onBackButtonClick={this.onBackButtonClick} 
-                                onOrderSubmit={this.onOrderSubmit} 
-                                onPlaceSelect={this.onPlaceSelect}
-                            />
-                            <Modal 
-                                show={this.state.showModal}
-                                movie={this.state.selectedMovie}
-                                session={this.state.selectedSession}
-                                seats={this.state.selectedSeats}
-                                onExit={this.onModalExit}
-                                onReject={this.onModalReject}
-                                onConfirm={this.onModalConfirm}
-                            />
-                        </div>
+                    <Route path="/order" render={()=>{
+                        if (!this.state.selectedSession) {
+                            return <Redirect to="/"/>
+                        } else {
+                            return (
+                                <div className="ui container">
+                                    <Header />
+                                    <OrderPanel 
+                                        movie={this.state.selectedMovie}
+                                        session={this.state.selectedSession}
+                                        seats={this.state.selectedSeats}
+                                        onBackButtonClick={this.onBackButtonClick} 
+                                        onOrderSubmit={this.onOrderSubmit} 
+                                        onPlaceSelect={this.onPlaceSelect}
+                                    />
+                                    <Modal 
+                                        show={this.state.showModal}
+                                        movie={this.state.selectedMovie}
+                                        session={this.state.selectedSession}
+                                        seats={this.state.selectedSeats}
+                                        onExit={this.onModalExit}
+                                        onReject={this.onModalReject}
+                                        onConfirm={this.onModalConfirm}
+                                    />
+                                </div>
+                            )
+                        }
+                    }}>        
                     </Route>
                     <Route path="*" >
                         <PageNotFound/>
