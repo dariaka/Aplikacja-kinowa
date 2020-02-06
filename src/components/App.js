@@ -101,6 +101,15 @@ class App extends React.Component {
         if (prevState.goTo !== this.state.goTo) {
             this.props.history.push(this.state.goTo);
         }
+        if (prevProps.location.pathname === "/order" && this.props.location.pathname === "/") {
+            this.setState({    
+                showModal: false,        
+                selectedMovie: null,
+                selectedSession: null,
+                selectedSeats: [],
+                goTo: "/",
+            })
+        }
     }
 
     render() {
@@ -143,11 +152,8 @@ class App extends React.Component {
                                 </div>
                             )
                         }
-                    }}>        
-                    </Route>
-                    <Route path="*" >
-                        <PageNotFound/>
-                    </Route>
+                    }}/>        
+                    <Route path="*" children={PageNotFound} />
                 </Switch>
         )
     }
