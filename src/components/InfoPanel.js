@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import MovieInfo from './MovieInfo';
 import Button from './Button';
 import './InfoPanel.css';
@@ -21,12 +22,14 @@ function InfoPanel(props) {
             </div>
 
             <div className="row">
-            <Button
-                    text={'Back to Repertoire'}
-                    active={true}
-                    color={'#999'}
-                    onButtonClick={props.onBackButtonClick}
-                />
+                <Link to="/">
+                    <Button
+                        text={'Back to Repertoire'}
+                        active={true}
+                        color={'#999'}
+                        onButtonClick={props.onBackButtonClick}
+                    />
+                </Link>
                 <Button
                     text={'Submit'}
                     active={props.seats.length ? true : false}
